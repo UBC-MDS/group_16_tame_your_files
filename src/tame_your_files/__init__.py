@@ -22,8 +22,9 @@
 # SOFTWARE.
 
 """
-Add a docstring here for the init module.
-
-This might include a very brief description of the package,
-its purpose, and any important notes.
+Pure, non-destructive filesystem analysis utilities.
 """
+
+from .file_size_utilities import FileInfo, files_to_free_space, largest_files
+
+__all__ = ["FileInfo", "largest_files", "files_to_free_space"]
