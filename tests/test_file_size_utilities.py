@@ -62,6 +62,39 @@ def test_largest_files_n_greater_than_count(tmp_path):
     assert result[2].size_bytes == 100
 
 
+def test_largest_files_with_subdirectories(tmp_path):
+    """
+    Test largest_files includes files in root and all subdirectories.
+    """
+    # Create files in root
+    (tmp_path / "root_file.txt").write_bytes(b"x" * 150)
+    
+    # Create subdirectory with files
+    subdir1 = tmp_path / "subdir1"
+    subdir1.mkdir()
+    (subdir1 / "subdir1_file.txt").write_bytes(b"x" * 250)
+    
+    # Create nested subdirectory with files
+    subdir2 = subdir1 / "subdir2"
+    subdir2.mkdir()
+    (subdir2 / "nested_file.txt").write_bytes(b"x" * 350)
+    
+    # Create another subdirectory
+    subdir3 = tmp_path / "subdir3"
+    subdir3.mkdir()
+    (subdir3 / "subdir3_file.txt").write_bytes(b"x" * 450)
+    
+    # Test: get all files, should include files from root and all subdirectories
+    result = largest_files(tmp_path, n=10)
+    
+    assert len(result) == 4
+    sizes = [f.size_bytes for f in result]
+    assert 450 in sizes
+    assert 350 in sizes
+    assert 250 in sizes
+    assert 150 in sizes
+
+
 def test_files_to_free_space_exact_threshold(tmp_path):
     """
     Test files_to_free_space with exact threshold.
@@ -115,6 +148,34 @@ def test_files_to_free_space_exceeding_total(tmp_path):
     assert len(result) == 2
     total = sum(f.size_bytes for f in result)
     assert total == 300
+
+
+def test_files_to_free_space_with_subdirectories(tmp_path):
+    """
+    Test files_to_free_space includes files in root and all subdirectories.
+    """
+    # Create files in root
+    (tmp_path / "root_file.txt").write_bytes(b"x" * 100)
+    
+    # Create subdirectory with files
+    subdir1 = tmp_path / "subdir1"
+    subdir1.mkdir()
+    (subdir1 / "subdir1_file.txt").write_bytes(b"x" * 200)
+    
+    # Create nested subdirectory with files
+    subdir2 = subdir1 / "subdir2"
+    subdir2.mkdir()
+    (subdir2 / "nested_file.txt").write_bytes(b"x" * 300)
+    
+    # Target: 400 bytes (should get nested_file + subdir1_file = 300 + 200 = 500)
+    result = files_to_free_space(tmp_path, target_bytes=400)
+    
+    assert len(result) == 2
+    total = sum(f.size_bytes for f in result)
+    assert total >= 400
+    sizes = [f.size_bytes for f in result]
+    assert 300 in sizes
+    assert 200 in sizes
 
 
 def test_files_to_free_space_zero_or_negative_target(tmp_path):

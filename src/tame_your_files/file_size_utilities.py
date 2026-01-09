@@ -49,6 +49,7 @@ def largest_files(root: Path, n: int = 10) -> list[FileInfo]:
     file_infos = []
     
     try:
+        # Recursively scan all files in root and all subdirectories
         for item in root.rglob("*"):
             if item.is_file():
                 try:
@@ -101,6 +102,7 @@ def files_to_free_space(root: Path, target_bytes: int) -> list[FileInfo]:
     file_infos = []
     
     try:
+        # Recursively scan all files in root and all subdirectories
         for item in root.rglob("*"):
             if item.is_file():
                 try:
