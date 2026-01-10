@@ -98,6 +98,7 @@ packages = ["src/tame_your_files"]
 ######## Configure pytest for your test suite ########
 [tool.pytest.ini_options]
 testpaths = ["tests"] # Tells pytest what directory tests are in
+pythonpath = ["src"] # Add src directory to Python path for src layout
 markers = ["raises"] # Tells pytest to not raise a warning if you use @pytest.mark.raises
 
 [tool.coverage.paths]
