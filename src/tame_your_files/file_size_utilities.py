@@ -1,7 +1,6 @@
 """
 File size utilities for analyzing disk usage.
 """
-import heapq
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -46,25 +45,7 @@ def largest_files(root: Path, n: int = 10) -> list[FileInfo]:
     - Unreadable files, broken symlinks, and permission errors
       are skipped silently.
     """
-    file_infos = []
-    
-    try:
-        # Recursively scan all files in root and all subdirectories
-        for item in root.rglob("*"):
-            if item.is_file():
-                try:
-                    size = item.stat().st_size
-                    abs_path = item.resolve()
-                    file_infos.append(FileInfo(path=abs_path, size_bytes=size))
-                except (OSError, PermissionError):
-                    pass
-    except (OSError, PermissionError):
-        pass
-    
-    # Use heapq.nlargest for efficient selection, then sort for deterministic ordering
-    largest = heapq.nlargest(n, file_infos, key=lambda x: x.size_bytes)
-    # Sort by size descending, then by path for deterministic ordering
-    return sorted(largest, key=lambda x: (-x.size_bytes, str(x.path)))
+    pass
 
 
 def files_to_free_space(root: Path, target_bytes: int) -> list[FileInfo]:
@@ -96,35 +77,5 @@ def files_to_free_space(root: Path, target_bytes: int) -> list[FileInfo]:
     - If total file size is insufficient, all files are returned.
     - No files are deleted.
     """
-    if target_bytes <= 0:
-        return []
-    
-    file_infos = []
-    
-    try:
-        # Recursively scan all files in root and all subdirectories
-        for item in root.rglob("*"):
-            if item.is_file():
-                try:
-                    size = item.stat().st_size
-                    abs_path = item.resolve()
-                    file_infos.append(FileInfo(path=abs_path, size_bytes=size))
-                except (OSError, PermissionError):
-                    pass
-    except (OSError, PermissionError):
-        pass
-    
-    # Sort by size descending, then by path for deterministic ordering
-    sorted_files = sorted(file_infos, key=lambda x: (-x.size_bytes, str(x.path)))
-    
-    result = []
-    total_size = 0
-    
-    for file_info in sorted_files:
-        result.append(file_info)
-        total_size += file_info.size_bytes
-        if total_size >= target_bytes:
-            break
-    
-    return result
+    pass
 
