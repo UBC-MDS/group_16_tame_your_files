@@ -3,6 +3,8 @@ This will be a set of functions to find duplicate files in a given directory and
 In order for the functions to be testable, we would like them to return something that can be easily asserted. For example, a dictionary where keys are the duplicate identifiers (like file name, size, or hash) and values are lists of file paths that match that identifier.
 Author: Eduardo Rivera
 '''
+import os
+from collections import defaultdict
 
 def find_duplicates(directory, method='content'):
     """
@@ -40,8 +42,12 @@ def find_duplicates_by_name(directory):
         A dictionary where keys are file names and values are lists of file paths
         that have that name (i.e., are duplicates).
     """
-    # Implementation will go here
-    pass
+    files_by_name = defaultdict(list)
+    for root, _, files in os.walk(directory):
+        for file in files:
+            files_by_name[file].append(os.path.join(root, file))
+            
+    return {name: paths for name, paths in files_by_name.items() if len(paths) > 1}
 
 def find_duplicates_by_size(directory):
     """
