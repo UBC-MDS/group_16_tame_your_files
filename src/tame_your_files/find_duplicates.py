@@ -64,8 +64,18 @@ def find_duplicates_by_size(directory):
         A dictionary where keys are file sizes and values are lists of file paths
         that have that size (i.e., are duplicates).
     """
-    # Implementation will go here
-    pass
+    files_by_size = defaultdict(list)
+    for root, _, files in os.walk(directory):
+        for file in files:
+            path = os.path.join(root, file)
+            try:
+                size = os.path.getsize(path)
+                files_by_size[size].append(path)
+            except OSError:
+                # Handle cases where file might be deleted or permissions issue
+                continue
+            
+    return {size: paths for size, paths in files_by_size.items() if len(paths) > 1}
 
 def find_duplicates_by_content(directory):
     """
