@@ -7,6 +7,10 @@ from tame_your_files.find_duplicates import (
     find_duplicates_by_content
 )
 
+# LLM Transparency: These tests were manually written to cover the refined function specifications.
+# I used Gemini AI to validate the test cases, ensuring that edge cases like 0-byte files,
+# non-existent directories, and unique file sets were properly accounted for.
+
 @pytest.fixture
 def workspace(tmp_path):
     """

@@ -1,6 +1,9 @@
 '''
 This will be a set of functions to find duplicate files in a given directory and subdirectories. There will be several "modes" of finding duplicates, such as by file name, by file size, and by file content (hashing).
 In order for the functions to be testable, we would like them to return something that can be easily asserted. For example, a dictionary where keys are the duplicate identifiers (like file name, size, or hash) and values are lists of file paths that match that identifier.
+
+LLM Transparency: I initially drafted the logic for these functions and then consulted Gemini AI to refine the docstrings, ensure robust exception handling (like FileNotFoundError and ValueError), and optimize the content hashing for memory efficiency using chunked reading.
+
 Author: Eduardo Rivera
 '''
 import os
