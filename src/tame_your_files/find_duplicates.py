@@ -25,8 +25,14 @@ def find_duplicates(directory, method='content'):
         A dictionary where keys are file hashes and values are lists of file paths
         that have that hash (i.e., are duplicates).
     """
-    # Implementation will go here
-    pass
+    if method == 'name':
+        return find_duplicates_by_name(directory)
+    elif method == 'size':
+        return find_duplicates_by_size(directory)
+    elif method == 'content':
+        return find_duplicates_by_content(directory)
+    else:
+        raise ValueError(f"Invalid method: {method}. Must be 'name', 'size', or 'content'.")
 
 def find_duplicates_by_name(directory):
     """
