@@ -15,7 +15,7 @@ def find_duplicates(directory, method='content'):
     method : str, optional
         The method to use for finding duplicates. Can be 'name', 'size', or 'content'.
         Defaults to 'content'.
-    
+
     Returns
     -------
     dict
@@ -33,7 +33,7 @@ def find_duplicates_by_name(directory):
     ----------
     directory : str
         The path to the directory to search for duplicates.
-    
+
     Returns
     -------
     dict
@@ -51,7 +51,7 @@ def find_duplicates_by_size(directory):
     ----------
     directory : str
         The path to the directory to search for duplicates.
-    
+
     Returns
     -------
     dict
@@ -69,7 +69,7 @@ def find_duplicates_by_content(directory):
     ----------
     directory : str
         The path to the directory to search for duplicates.
-    
+
     Returns
     -------
     dict
