@@ -4,6 +4,7 @@ In order for the functions to be testable, we would like them to return somethin
 Author: Eduardo Rivera
 '''
 import os
+import hashlib
 from collections import defaultdict
 
 def find_duplicates(directory, method='content'):
@@ -92,5 +93,17 @@ def find_duplicates_by_content(directory):
         A dictionary where keys are file hashes and values are lists of file paths
         that have that hash (i.e., are duplicates).
     """
-    # Implementation will go here
-    pass
+    files_by_hash = defaultdict(list)
+    for root, _, files in os.walk(directory):
+        for file in files:
+            path = os.path.join(root, file)
+            try:
+                hash_md5 = hashlib.md5()
+                with open(path, "rb") as f:
+                    for chunk in iter(lambda: f.read(4096), b""):
+                        hash_md5.update(chunk)
+                files_by_hash[hash_md5.hexdigest()].append(path)
+            except OSError:
+                continue
+            
+    return {h: paths for h, paths in files_by_hash.items() if len(paths) > 1}
