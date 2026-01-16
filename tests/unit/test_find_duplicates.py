@@ -146,11 +146,58 @@ def test_find_duplicates_invalid_method(workspace):
     with pytest.raises(ValueError):
         find_duplicates(str(workspace), method='invalid_method')
 
+def test_find_duplicates_invalid_directory():
+    """Test that a FileNotFoundError is raised for an invalid directory."""
+    with pytest.raises(FileNotFoundError):
+        find_duplicates("non_existent_directory_12345")
+
+    with pytest.raises(FileNotFoundError):
+        # Pass a file path instead of a directory
+        find_duplicates(__file__) 
+
+def test_find_duplicates_zero_byte_files(tmp_path):
+    """Test handling of 0-byte files."""
+    d = tmp_path / "zero_byte"
+    d.mkdir()
+    (d / "empty1").touch()
+    (d / "empty2").touch()
+    (d / "not_empty").write_text("content")
+
+    # By size: 0 bytes
+    res_size = find_duplicates(str(d), method='size')
+    assert 0 in res_size
+    assert len(res_size[0]) == 2
+    
+    # By content: empty hash (d41d8cd98f00b204e9800998ecf8427e is MD5 of empty string)
+    res_content = find_duplicates(str(d), method='content')
+    empty_hash = "d41d8cd98f00b204e9800998ecf8427e"
+    assert empty_hash in res_content
+    assert len(res_content[empty_hash]) == 2
+
+def test_find_duplicates_no_duplicates(tmp_path):
+    """Test directory with files but no duplicates."""
+    d = tmp_path / "unique"
+    d.mkdir()
+    # Initialize with different content and sizes immediately
+    (d / "f1").write_text("a")
+    (d / "f2").write_text("bb")
+    (d / "f3").write_text("ccc")
+
+    assert find_duplicates(str(d), method='name') == {}
+    assert find_duplicates(str(d), method='size') == {}
+    assert find_duplicates(str(d), method='content') == {}
+
 def test_empty_directory(tmp_path):
     """Test behavior with an empty directory."""
     d = tmp_path / "empty"
     d.mkdir()
     
+    # Direct function calls
     assert find_duplicates_by_name(str(d)) == {}
     assert find_duplicates_by_size(str(d)) == {}
     assert find_duplicates_by_content(str(d)) == {}
+    
+    # Wrapper calls
+    assert find_duplicates(str(d), method='name') == {}
+    assert find_duplicates(str(d), method='size') == {}
+    assert find_duplicates(str(d), method='content') == {}

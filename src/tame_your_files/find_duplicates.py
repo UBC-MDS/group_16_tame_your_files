@@ -22,9 +22,20 @@ def find_duplicates(directory, method='content'):
     Returns
     -------
     dict
-        A dictionary where keys are file hashes and values are lists of file paths
-        that have that hash (i.e., are duplicates).
+        A dictionary where keys are the duplicate identifiers (hash, name, or size) 
+        and values are lists of file paths that match that identifier.
+        Returns an empty dictionary if no duplicates are found.
+
+    Raises
+    ------
+    ValueError
+        If the provided method is not one of 'name', 'size', or 'content'.
+    FileNotFoundError
+        If the provided directory path does not exist or is not a directory.
     """
+    if not os.path.isdir(directory):
+        raise FileNotFoundError(f"The directory '{directory}' does not exist or is not a directory.")
+
     if method == 'name':
         return find_duplicates_by_name(directory)
     elif method == 'size':
@@ -47,7 +58,7 @@ def find_duplicates_by_name(directory):
     -------
     dict
         A dictionary where keys are file names and values are lists of file paths
-        that have that name (i.e., are duplicates).
+        that have that name. Only includes names that appear more than once.
     """
     files_by_name = defaultdict(list)
     for root, _, files in os.walk(directory):
@@ -68,14 +79,15 @@ def find_duplicates_by_size(directory):
     Returns
     -------
     dict
-        A dictionary where keys are file sizes and values are lists of file paths
-        that have that size (i.e., are duplicates).
+        A dictionary where keys are file sizes (in bytes) and values are lists of file paths
+        that have that size. Only includes sizes that appear more than once.
     """
     files_by_size = defaultdict(list)
     for root, _, files in os.walk(directory):
         for file in files:
             path = os.path.join(root, file)
             try:
+                # We do not skip 0-byte files; two empty files are considered duplicates by size.
                 size = os.path.getsize(path)
                 files_by_size[size].append(path)
             except OSError:
@@ -86,7 +98,7 @@ def find_duplicates_by_size(directory):
 
 def find_duplicates_by_content(directory):
     """
-    Finds duplicate files based on file content (hashing) within a given directory and its subdirectories.
+    Finds duplicate files based on file content (MD5 hash) within a given directory and its subdirectories.
 
     Parameters
     ----------
@@ -97,7 +109,7 @@ def find_duplicates_by_content(directory):
     -------
     dict
         A dictionary where keys are file hashes and values are lists of file paths
-        that have that hash (i.e., are duplicates).
+        that have that hash. Only includes hashes that appear more than once.
     """
     files_by_hash = defaultdict(list)
     for root, _, files in os.walk(directory):
@@ -106,6 +118,7 @@ def find_duplicates_by_content(directory):
             try:
                 hash_md5 = hashlib.md5()
                 with open(path, "rb") as f:
+                    # Read in chunks to handle large files memory-efficiently
                     for chunk in iter(lambda: f.read(4096), b""):
                         hash_md5.update(chunk)
                 files_by_hash[hash_md5.hexdigest()].append(path)
