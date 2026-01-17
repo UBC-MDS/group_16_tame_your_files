@@ -20,7 +20,9 @@ This package provides some useful tools for managing your files, looking for dup
 seen the folders structure and storage used, among others.
 """
 authors = [
-    { name = "Ali Boolor, Jeffrey Ding, Eduardo Rivera", email = "a.boloor@gmail.com, jeffreyhding@gmail.com, ef.riveras@gmail.com" },
+  { name = "Ali Boloor", email = "a.boloor@gmail.com" },
+  { name = "Jeffrey Ding", email = "jeffreyhding@gmail.com" },
+  { name = "Eduardo Rivera", email = "ef.riveras@gmail.com" }
 ]
 license = "MIT"
 requires-python = ">= 3.10" # Adjust based on the minimum version of Python that you support
