@@ -43,7 +43,7 @@ def largest_files(root: Path, n: int = 10) -> list[FileInfo]:
     - Only regular files are considered.
     - Directories are ignored.
     - Unreadable files, broken symlinks, and permission errors
-      are skipped silently.
+    are skipped silently.
     """
     file_infos = []
     
