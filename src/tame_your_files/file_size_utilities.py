@@ -4,7 +4,6 @@ File size utilities for analyzing disk usage.
 from dataclasses import dataclass
 from pathlib import Path
 
-
 @dataclass(frozen=True)
 class FileInfo:
     """
@@ -43,7 +42,7 @@ def largest_files(root: Path, n: int = 10) -> list[FileInfo]:
     - Only regular files are considered.
     - Directories are ignored.
     - Unreadable files, broken symlinks, and permission errors
-      are skipped silently.
+    are skipped silently.
     """
     pass
 
