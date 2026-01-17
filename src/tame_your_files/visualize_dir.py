@@ -84,8 +84,8 @@ def create_treemap_figure(data):
         labels=labels,
         parents=parents,
         values=values,
-        branchvalues="total", # Important: ensures folder size = sum of children
-        hovertemplate='<b>%{label}</b><br>Size: %{value} bytes<extra></extra>'
+        branchvalues="remainder",  # Changed from "total"
+        hoverinfo="label+value+percent parent"
     ))
     
     fig.update_layout(margin=dict(t=30, l=10, r=10, b=10))
