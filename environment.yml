@@ -2,5 +2,10 @@ name: tame_your_files_env
 channels:
   - conda-forge
 dependencies:
-  - python=3.12.11
-prefix: /Users/jun/miniforge3/envs/tame_your_files_env
+  - python=3.11
+  - pip
+  - plotly
+  - pytest
+  - quarto
+  - pip:
+      - quartodoc
