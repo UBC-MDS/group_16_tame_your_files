@@ -1,9 +1,12 @@
 """
 File size utilities for analyzing disk usage.
+
+Author: Ali Boloor
 """
 import heapq
 from dataclasses import dataclass
 from pathlib import Path
+
 
 @dataclass(frozen=True)
 class FileInfo:
@@ -155,4 +158,3 @@ def files_to_free_space(root: Path, target_bytes: int) -> list[FileInfo]:
             break
     
     return result
-

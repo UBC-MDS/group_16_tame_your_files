@@ -33,16 +33,13 @@ python -m pytest
 
 ## Building documentation locally
 
-Install the Quarto extension and Python dependency, then build the site:
+Build the Quarto site (this runs `quartodoc` automatically via `pre-render`):
 
 ```bash
-cd docs
-quarto add quarto-ext/quartodoc
-python -m pip install quartodoc
-QUARTO_PYTHON="$(which python)" quarto render
+quarto render docs
 ```
 
 ## Deploying documentation (automated)
 
 Documentation is built and deployed automatically to GitHub Pages via GitHub Actions.
-Live site: <https://<GITHUB_PAGES_URL>>
+Live site: https://github.com/UBC-MDS/group_16_tame_your_files

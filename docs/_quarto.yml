@@ -3,40 +3,46 @@ project:
   output-dir: _site
   render:
     - index.qmd
-    - reference/api.qmd
+    - reference/tame_your_files.qmd
+    - reference/*.qmd
+  pre-render:
+    - python -m quartodoc build --config _quarto.yml
 
 website:
   title: "tame_your_files"
   navbar:
     left:
-      - text: "Home"
+      - text: Home
         href: index.qmd
-      - text: "API Reference"
-        href: reference/api.qmd
+      - text: Reference
+        href: reference/tame_your_files.qmd
+  sidebar:
+    style: "docked"
+    contents:
+      - text: Home
+        href: index.qmd
+      - section: Reference
+        contents:
+          - reference/tame_your_files.qmd
 
 format:
   html:
     theme: cosmo
     toc: true
 
+execute:
+  freeze: auto
+
+python:
+  path: ../src
+
 quartodoc:
-  style: numpy
+  style: pkgdown
   package: tame_your_files
   dir: reference
-  render:
-    - reference/api.qmd
-  sections:
-    - title: "Public API"
-      contents:
-        - tame_your_files.FileInfo
-        - tame_your_files.largest_files
-        - tame_your_files.files_to_free_space
-        - tame_your_files.find_duplicates.find_duplicates
-        - tame_your_files.find_duplicates.find_duplicates_by_name
-        - tame_your_files.find_duplicates.find_duplicates_by_size
-        - tame_your_files.find_duplicates.find_duplicates_by_content
-        - tame_your_files.visualize_dir.get_directory_data
-        - tame_your_files.visualize_dir.create_treemap_figure
-        - tame_your_files.visualize_dir.visualize_dir
-        - tame_your_files.example.add_numbers
-
+  out_index: tame_your_files.qmd
+  parser: numpy
+  source_dir: ../src
+  options:
+    include_private: false
+    include_imports: true

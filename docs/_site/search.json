@@ -1,44 +1,297 @@
 [
   {
-    "objectID": "reference/api.html",
-    "href": "reference/api.html",
-    "title": "API Reference",
+    "objectID": "reference/largest_files.html",
+    "href": "reference/largest_files.html",
+    "title": "largest_files",
     "section": "",
-    "text": "{{&lt; quartodoc &gt;}}"
+    "text": "largest_files(root, n=10)\nRecursively scan a directory and return the n largest files.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nroot\nPath\nRoot directory to scan. All subdirectories are included.\nrequired\n\n\nn\nint\nMaximum number of files to return.\n10\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nlist[FileInfo]\nFiles sorted by size in descending order. At most n files are returned.\n\n\n\n\n\n\n\nOnly regular files are considered.\nDirectories are ignored.\nUnreadable files, broken symlinks, and permission errors are skipped silently.\n\n\n\n\n&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     root = Path(tmp)\n...     _ = (root / \"a.txt\").write_text(\"a\")\n...     _ = (root / \"b.txt\").write_text(\"bb\")\n...     largest_files(root, n=1)[0].path.name\n'b.txt'"
+  },
+  {
+    "objectID": "reference/largest_files.html#parameters",
+    "href": "reference/largest_files.html#parameters",
+    "title": "largest_files",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nroot\nPath\nRoot directory to scan. All subdirectories are included.\nrequired\n\n\nn\nint\nMaximum number of files to return.\n10"
+  },
+  {
+    "objectID": "reference/largest_files.html#returns",
+    "href": "reference/largest_files.html#returns",
+    "title": "largest_files",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\nlist[FileInfo]\nFiles sorted by size in descending order. At most n files are returned."
+  },
+  {
+    "objectID": "reference/largest_files.html#notes",
+    "href": "reference/largest_files.html#notes",
+    "title": "largest_files",
+    "section": "",
+    "text": "Only regular files are considered.\nDirectories are ignored.\nUnreadable files, broken symlinks, and permission errors are skipped silently."
+  },
+  {
+    "objectID": "reference/largest_files.html#examples",
+    "href": "reference/largest_files.html#examples",
+    "title": "largest_files",
+    "section": "",
+    "text": "&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     root = Path(tmp)\n...     _ = (root / \"a.txt\").write_text(\"a\")\n...     _ = (root / \"b.txt\").write_text(\"bb\")\n...     largest_files(root, n=1)[0].path.name\n'b.txt'"
+  },
+  {
+    "objectID": "reference/find_duplicates_by_size.html",
+    "href": "reference/find_duplicates_by_size.html",
+    "title": "find_duplicates_by_size",
+    "section": "",
+    "text": "find_duplicates_by_size(directory)\nFinds duplicate files based on file sizes within a given directory and its subdirectories.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndirectory\nstr\nThe path to the directory to search for duplicates.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\ndict\nA dictionary where keys are file sizes (in bytes) and values are lists of file paths that have that size. Only includes sizes that appear more than once.\n\n\n\n\n\n\n&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     _ = open(os.path.join(tmp, \"a.txt\"), \"w\").write(\"same\")\n...     _ = open(os.path.join(tmp, \"b.txt\"), \"w\").write(\"same\")\n...     duplicates = find_duplicates_by_size(tmp)\n...     list(duplicates.keys()) == [4]\nTrue"
+  },
+  {
+    "objectID": "reference/find_duplicates_by_size.html#parameters",
+    "href": "reference/find_duplicates_by_size.html#parameters",
+    "title": "find_duplicates_by_size",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\ndirectory\nstr\nThe path to the directory to search for duplicates.\nrequired"
+  },
+  {
+    "objectID": "reference/find_duplicates_by_size.html#returns",
+    "href": "reference/find_duplicates_by_size.html#returns",
+    "title": "find_duplicates_by_size",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\ndict\nA dictionary where keys are file sizes (in bytes) and values are lists of file paths that have that size. Only includes sizes that appear more than once."
+  },
+  {
+    "objectID": "reference/find_duplicates_by_size.html#examples",
+    "href": "reference/find_duplicates_by_size.html#examples",
+    "title": "find_duplicates_by_size",
+    "section": "",
+    "text": "&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     _ = open(os.path.join(tmp, \"a.txt\"), \"w\").write(\"same\")\n...     _ = open(os.path.join(tmp, \"b.txt\"), \"w\").write(\"same\")\n...     duplicates = find_duplicates_by_size(tmp)\n...     list(duplicates.keys()) == [4]\nTrue"
+  },
+  {
+    "objectID": "reference/find_duplicates_by_content.html",
+    "href": "reference/find_duplicates_by_content.html",
+    "title": "find_duplicates_by_content",
+    "section": "",
+    "text": "find_duplicates_by_content(directory)\nFinds duplicate files based on file content (MD5 hash) within a given directory and its subdirectories.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndirectory\nstr\nThe path to the directory to search for duplicates.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\ndict\nA dictionary where keys are file hashes and values are lists of file paths that have that hash. Only includes hashes that appear more than once.\n\n\n\n\n\n\n&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     _ = open(os.path.join(tmp, \"a.txt\"), \"w\").write(\"same\")\n...     _ = open(os.path.join(tmp, \"b.txt\"), \"w\").write(\"same\")\n...     duplicates = find_duplicates_by_content(tmp)\n...     any(len(paths) &gt; 1 for paths in duplicates.values())\nTrue"
+  },
+  {
+    "objectID": "reference/find_duplicates_by_content.html#parameters",
+    "href": "reference/find_duplicates_by_content.html#parameters",
+    "title": "find_duplicates_by_content",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\ndirectory\nstr\nThe path to the directory to search for duplicates.\nrequired"
+  },
+  {
+    "objectID": "reference/find_duplicates_by_content.html#returns",
+    "href": "reference/find_duplicates_by_content.html#returns",
+    "title": "find_duplicates_by_content",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\ndict\nA dictionary where keys are file hashes and values are lists of file paths that have that hash. Only includes hashes that appear more than once."
+  },
+  {
+    "objectID": "reference/find_duplicates_by_content.html#examples",
+    "href": "reference/find_duplicates_by_content.html#examples",
+    "title": "find_duplicates_by_content",
+    "section": "",
+    "text": "&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     _ = open(os.path.join(tmp, \"a.txt\"), \"w\").write(\"same\")\n...     _ = open(os.path.join(tmp, \"b.txt\"), \"w\").write(\"same\")\n...     duplicates = find_duplicates_by_content(tmp)\n...     any(len(paths) &gt; 1 for paths in duplicates.values())\nTrue"
+  },
+  {
+    "objectID": "reference/create_treemap_figure.html",
+    "href": "reference/create_treemap_figure.html",
+    "title": "create_treemap_figure",
+    "section": "",
+    "text": "create_treemap_figure(data)\nTransforms the flat list into a Plotly Treemap object.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndata\nlist of dict\nThe list of dictionaries representing files and folders with their sizes and hierarchy.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nplotly.graph_objects.Figure\nA Plotly Treemap figure representing the directory structure.\n\n\n\n\n\n\n&gt;&gt;&gt; fig = create_treemap_figure([{\"id\": \"root\", \"name\": \"root\", \"parent\": \"\", \"value\": 0}])\n&gt;&gt;&gt; fig.__class__.__name__\n'Figure'"
+  },
+  {
+    "objectID": "reference/create_treemap_figure.html#parameters",
+    "href": "reference/create_treemap_figure.html#parameters",
+    "title": "create_treemap_figure",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\ndata\nlist of dict\nThe list of dictionaries representing files and folders with their sizes and hierarchy.\nrequired"
+  },
+  {
+    "objectID": "reference/create_treemap_figure.html#returns",
+    "href": "reference/create_treemap_figure.html#returns",
+    "title": "create_treemap_figure",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\nplotly.graph_objects.Figure\nA Plotly Treemap figure representing the directory structure."
+  },
+  {
+    "objectID": "reference/create_treemap_figure.html#examples",
+    "href": "reference/create_treemap_figure.html#examples",
+    "title": "create_treemap_figure",
+    "section": "",
+    "text": "&gt;&gt;&gt; fig = create_treemap_figure([{\"id\": \"root\", \"name\": \"root\", \"parent\": \"\", \"value\": 0}])\n&gt;&gt;&gt; fig.__class__.__name__\n'Figure'"
+  },
+  {
+    "objectID": "reference/tame_your_files.html",
+    "href": "reference/tame_your_files.html",
+    "title": "Function reference",
+    "section": "",
+    "text": "Pure, non-destructive filesystem analysis utilities.\n\n\n\nFileInfo\nContainer for file metadata.\n\n\nfiles_to_free_space\nDetermine the minimum number of files that would need to be deleted\n\n\nlargest_files\nRecursively scan a directory and return the n largest files.\n\n\nfind_duplicates_by_content\nFinds duplicate files based on file content (MD5 hash) within a given directory and its subdirectories.\n\n\nfind_duplicates_by_name\nFinds duplicate files based on file names within a given directory and its subdirectories.\n\n\nfind_duplicates_by_size\nFinds duplicate files based on file sizes within a given directory and its subdirectories.\n\n\ncreate_treemap_figure\nTransforms the flat list into a Plotly Treemap object.\n\n\nget_directory_data\nWalks the directory and builds a representative list of dictionaries of all children. Uses os.walk to capture every file and folder.",
+    "crumbs": [
+      "Home",
+      "Reference",
+      "Function reference"
+    ]
+  },
+  {
+    "objectID": "reference/tame_your_files.html#tame_your_files",
+    "href": "reference/tame_your_files.html#tame_your_files",
+    "title": "Function reference",
+    "section": "",
+    "text": "Pure, non-destructive filesystem analysis utilities.\n\n\n\nFileInfo\nContainer for file metadata.\n\n\nfiles_to_free_space\nDetermine the minimum number of files that would need to be deleted\n\n\nlargest_files\nRecursively scan a directory and return the n largest files.\n\n\nfind_duplicates_by_content\nFinds duplicate files based on file content (MD5 hash) within a given directory and its subdirectories.\n\n\nfind_duplicates_by_name\nFinds duplicate files based on file names within a given directory and its subdirectories.\n\n\nfind_duplicates_by_size\nFinds duplicate files based on file sizes within a given directory and its subdirectories.\n\n\ncreate_treemap_figure\nTransforms the flat list into a Plotly Treemap object.\n\n\nget_directory_data\nWalks the directory and builds a representative list of dictionaries of all children. Uses os.walk to capture every file and folder.",
+    "crumbs": [
+      "Home",
+      "Reference",
+      "Function reference"
+    ]
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "tame_your_files",
     "section": "",
-    "text": "tame_your_files provides small, composable helpers for analyzing disk usage, finding duplicates, and visualizing directories without modifying the filesystem."
+    "text": "tame_your_files provides non-destructive filesystem analysis utilities for identifying large files, finding duplicates, and visualizing directory structure.\nThe API reference is generated automatically from NumPy-style docstrings in the src/tame_your_files package.",
+    "crumbs": [
+      "Home"
+    ]
   },
   {
-    "objectID": "index.html#overview",
-    "href": "index.html#overview",
+    "objectID": "index.html#file-size-utilities",
+    "href": "index.html#file-size-utilities",
     "title": "tame_your_files",
-    "section": "",
-    "text": "tame_your_files provides small, composable helpers for analyzing disk usage, finding duplicates, and visualizing directories without modifying the filesystem."
-  },
-  {
-    "objectID": "index.html#quickstart",
-    "href": "index.html#quickstart",
-    "title": "tame_your_files",
-    "section": "Quickstart",
-    "text": "Quickstart\nfrom pathlib import Path\nfrom tame_your_files import largest_files, files_to_free_space\n\nroot = Path(\".\")\nlargest = largest_files(root, n=5)\ntargets = files_to_free_space(root, target_bytes=10_000_000)\n\nprint([item.path.name for item in largest])\nprint(sum(item.size_bytes for item in targets))"
+    "section": "File size utilities",
+    "text": "File size utilities\n\nFileInfo\nlargest_files\nfiles_to_free_space",
+    "crumbs": [
+      "Home"
+    ]
   },
   {
     "objectID": "index.html#duplicate-detection",
     "href": "index.html#duplicate-detection",
     "title": "tame_your_files",
     "section": "Duplicate detection",
-    "text": "Duplicate detection\nfrom tame_your_files.find_duplicates import find_duplicates\n\nduplicates = find_duplicates(\".\", method=\"content\")\nprint(len(duplicates))"
+    "text": "Duplicate detection\n\nfind_duplicates\nfind_duplicates_by_name\nfind_duplicates_by_size\nfind_duplicates_by_content",
+    "crumbs": [
+      "Home"
+    ]
   },
   {
     "objectID": "index.html#directory-visualization",
     "href": "index.html#directory-visualization",
     "title": "tame_your_files",
     "section": "Directory visualization",
-    "text": "Directory visualization\nfrom tame_your_files.visualize_dir import visualize_dir\n\nfig = visualize_dir(\".\")\nfig.show()"
+    "text": "Directory visualization\n\nget_directory_data\ncreate_treemap_figure\nvisualize_dir",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "reference/FileInfo.html",
+    "href": "reference/FileInfo.html",
+    "title": "FileInfo",
+    "section": "",
+    "text": "FileInfo(path, size_bytes)\nContainer for file metadata.\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\npath\nPath\nAbsolute path to the file.\n\n\nsize_bytes\nint\nFile size in bytes.\n\n\n\n\n\n\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; info = FileInfo(path=Path(\"example.txt\"), size_bytes=12)\n&gt;&gt;&gt; info.size_bytes\n12"
+  },
+  {
+    "objectID": "reference/FileInfo.html#attributes",
+    "href": "reference/FileInfo.html#attributes",
+    "title": "FileInfo",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\npath\nPath\nAbsolute path to the file.\n\n\nsize_bytes\nint\nFile size in bytes."
+  },
+  {
+    "objectID": "reference/FileInfo.html#examples",
+    "href": "reference/FileInfo.html#examples",
+    "title": "FileInfo",
+    "section": "",
+    "text": "&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; info = FileInfo(path=Path(\"example.txt\"), size_bytes=12)\n&gt;&gt;&gt; info.size_bytes\n12"
+  },
+  {
+    "objectID": "reference/files_to_free_space.html",
+    "href": "reference/files_to_free_space.html",
+    "title": "files_to_free_space",
+    "section": "",
+    "text": "files_to_free_space(root, target_bytes)\nDetermine the minimum number of files that would need to be deleted to free at least a given amount of disk space.\nThis function DOES NOT delete anything.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nroot\nPath\nRoot directory to scan.\nrequired\n\n\ntarget_bytes\nint\nDesired amount of space to free, in bytes.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nlist[FileInfo]\nA list of files whose combined size is greater than or equal to target_bytes. Files are selected greedily, starting from the largest.\n\n\n\n\n\n\n\nFiles are selected by descending size.\nSelection stops as soon as the target is met.\nIf target_bytes &lt;= 0, an empty list is returned.\nIf total file size is insufficient, all files are returned.\nNo files are deleted.\n\n\n\n\n&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     root = Path(tmp)\n...     _ = (root / \"a.txt\").write_text(\"a\")\n...     _ = (root / \"b.txt\").write_text(\"bbb\")\n...     [item.path.name for item in files_to_free_space(root, 2)]\n['b.txt']"
+  },
+  {
+    "objectID": "reference/files_to_free_space.html#parameters",
+    "href": "reference/files_to_free_space.html#parameters",
+    "title": "files_to_free_space",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nroot\nPath\nRoot directory to scan.\nrequired\n\n\ntarget_bytes\nint\nDesired amount of space to free, in bytes.\nrequired"
+  },
+  {
+    "objectID": "reference/files_to_free_space.html#returns",
+    "href": "reference/files_to_free_space.html#returns",
+    "title": "files_to_free_space",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\nlist[FileInfo]\nA list of files whose combined size is greater than or equal to target_bytes. Files are selected greedily, starting from the largest."
+  },
+  {
+    "objectID": "reference/files_to_free_space.html#notes",
+    "href": "reference/files_to_free_space.html#notes",
+    "title": "files_to_free_space",
+    "section": "",
+    "text": "Files are selected by descending size.\nSelection stops as soon as the target is met.\nIf target_bytes &lt;= 0, an empty list is returned.\nIf total file size is insufficient, all files are returned.\nNo files are deleted."
+  },
+  {
+    "objectID": "reference/files_to_free_space.html#examples",
+    "href": "reference/files_to_free_space.html#examples",
+    "title": "files_to_free_space",
+    "section": "",
+    "text": "&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     root = Path(tmp)\n...     _ = (root / \"a.txt\").write_text(\"a\")\n...     _ = (root / \"b.txt\").write_text(\"bbb\")\n...     [item.path.name for item in files_to_free_space(root, 2)]\n['b.txt']"
+  },
+  {
+    "objectID": "reference/find_duplicates_by_name.html",
+    "href": "reference/find_duplicates_by_name.html",
+    "title": "find_duplicates_by_name",
+    "section": "",
+    "text": "find_duplicates_by_name(directory)\nFinds duplicate files based on file names within a given directory and its subdirectories.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndirectory\nstr\nThe path to the directory to search for duplicates.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\ndict\nA dictionary where keys are file names and values are lists of file paths that have that name. Only includes names that appear more than once.\n\n\n\n\n\n\n&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     subdir = os.path.join(tmp, \"sub\")\n...     os.mkdir(subdir)\n...     _ = open(os.path.join(tmp, \"dup.txt\"), \"w\").write(\"a\")\n...     _ = open(os.path.join(subdir, \"dup.txt\"), \"w\").write(\"b\")\n...     duplicates = find_duplicates_by_name(tmp)\n...     list(duplicates.keys())\n['dup.txt']"
+  },
+  {
+    "objectID": "reference/find_duplicates_by_name.html#parameters",
+    "href": "reference/find_duplicates_by_name.html#parameters",
+    "title": "find_duplicates_by_name",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\ndirectory\nstr\nThe path to the directory to search for duplicates.\nrequired"
+  },
+  {
+    "objectID": "reference/find_duplicates_by_name.html#returns",
+    "href": "reference/find_duplicates_by_name.html#returns",
+    "title": "find_duplicates_by_name",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\ndict\nA dictionary where keys are file names and values are lists of file paths that have that name. Only includes names that appear more than once."
+  },
+  {
+    "objectID": "reference/find_duplicates_by_name.html#examples",
+    "href": "reference/find_duplicates_by_name.html#examples",
+    "title": "find_duplicates_by_name",
+    "section": "",
+    "text": "&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     subdir = os.path.join(tmp, \"sub\")\n...     os.mkdir(subdir)\n...     _ = open(os.path.join(tmp, \"dup.txt\"), \"w\").write(\"a\")\n...     _ = open(os.path.join(subdir, \"dup.txt\"), \"w\").write(\"b\")\n...     duplicates = find_duplicates_by_name(tmp)\n...     list(duplicates.keys())\n['dup.txt']"
+  },
+  {
+    "objectID": "reference/get_directory_data.html",
+    "href": "reference/get_directory_data.html",
+    "title": "get_directory_data",
+    "section": "",
+    "text": "get_directory_data(target_path)\nWalks the directory and builds a representative list of dictionaries of all children. Uses os.walk to capture every file and folder.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ntarget_path\nstr\nThe root directory path from which to start building the data.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nlist of dict\nA list of dictionaries representing files and folders with their sizes and hierarchy.\n\n\n\n\n\n\n&gt;&gt;&gt; data = get_directory_data(\".\")\n&gt;&gt;&gt; isinstance(data, list)\nTrue"
+  },
+  {
+    "objectID": "reference/get_directory_data.html#parameters",
+    "href": "reference/get_directory_data.html#parameters",
+    "title": "get_directory_data",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\ntarget_path\nstr\nThe root directory path from which to start building the data.\nrequired"
+  },
+  {
+    "objectID": "reference/get_directory_data.html#returns",
+    "href": "reference/get_directory_data.html#returns",
+    "title": "get_directory_data",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\nlist of dict\nA list of dictionaries representing files and folders with their sizes and hierarchy."
+  },
+  {
+    "objectID": "reference/get_directory_data.html#examples",
+    "href": "reference/get_directory_data.html#examples",
+    "title": "get_directory_data",
+    "section": "",
+    "text": "&gt;&gt;&gt; data = get_directory_data(\".\")\n&gt;&gt;&gt; isinstance(data, list)\nTrue"
   }
 ]
