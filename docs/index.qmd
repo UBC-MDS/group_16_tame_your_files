@@ -1,0 +1,42 @@
+---
+title: "tame_your_files"
+description: "Pure, non-destructive filesystem analysis utilities."
+---
+
+## Overview
+
+`tame_your_files` provides small, composable helpers for analyzing disk usage,
+finding duplicates, and visualizing directories without modifying the filesystem.
+
+## Quickstart
+
+```python
+from pathlib import Path
+from tame_your_files import largest_files, files_to_free_space
+
+root = Path(".")
+largest = largest_files(root, n=5)
+targets = files_to_free_space(root, target_bytes=10_000_000)
+
+print([item.path.name for item in largest])
+print(sum(item.size_bytes for item in targets))
+```
+
+## Duplicate detection
+
+```python
+from tame_your_files.find_duplicates import find_duplicates
+
+duplicates = find_duplicates(".", method="content")
+print(len(duplicates))
+```
+
+## Directory visualization
+
+```python
+from tame_your_files.visualize_dir import visualize_dir
+
+fig = visualize_dir(".")
+fig.show()
+```
+

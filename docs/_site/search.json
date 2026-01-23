@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "reference/api.html",
+    "href": "reference/api.html",
+    "title": "API Reference",
+    "section": "",
+    "text": "{{&lt; quartodoc &gt;}}"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "tame_your_files",
+    "section": "",
+    "text": "tame_your_files provides small, composable helpers for analyzing disk usage, finding duplicates, and visualizing directories without modifying the filesystem."
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "tame_your_files",
+    "section": "",
+    "text": "tame_your_files provides small, composable helpers for analyzing disk usage, finding duplicates, and visualizing directories without modifying the filesystem."
+  },
+  {
+    "objectID": "index.html#quickstart",
+    "href": "index.html#quickstart",
+    "title": "tame_your_files",
+    "section": "Quickstart",
+    "text": "Quickstart\nfrom pathlib import Path\nfrom tame_your_files import largest_files, files_to_free_space\n\nroot = Path(\".\")\nlargest = largest_files(root, n=5)\ntargets = files_to_free_space(root, target_bytes=10_000_000)\n\nprint([item.path.name for item in largest])\nprint(sum(item.size_bytes for item in targets))"
+  },
+  {
+    "objectID": "index.html#duplicate-detection",
+    "href": "index.html#duplicate-detection",
+    "title": "tame_your_files",
+    "section": "Duplicate detection",
+    "text": "Duplicate detection\nfrom tame_your_files.find_duplicates import find_duplicates\n\nduplicates = find_duplicates(\".\", method=\"content\")\nprint(len(duplicates))"
+  },
+  {
+    "objectID": "index.html#directory-visualization",
+    "href": "index.html#directory-visualization",
+    "title": "tame_your_files",
+    "section": "Directory visualization",
+    "text": "Directory visualization\nfrom tame_your_files.visualize_dir import visualize_dir\n\nfig = visualize_dir(\".\")\nfig.show()"
+  }
+]

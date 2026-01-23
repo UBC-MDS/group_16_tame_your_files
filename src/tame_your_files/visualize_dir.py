@@ -23,6 +23,12 @@ def get_directory_data(target_path):
     -------
     list of dict
         A list of dictionaries representing files and folders with their sizes and hierarchy.
+
+    Examples
+    --------
+    >>> data = get_directory_data(".")
+    >>> isinstance(data, list)
+    True
     """
     if not os.path.exists(target_path):
         raise FileNotFoundError(f"Path not found: {target_path}")
@@ -73,6 +79,12 @@ def create_treemap_figure(data):
     -------
     plotly.graph_objects.Figure
         A Plotly Treemap figure representing the directory structure.
+
+    Examples
+    --------
+    >>> fig = create_treemap_figure([{"id": "root", "name": "root", "parent": "", "value": 0}])
+    >>> fig.__class__.__name__
+    'Figure'
     """
     ids = [item["id"] for item in data]
     labels = [item["name"] for item in data]
@@ -103,6 +115,12 @@ def visualize_dir(path="."):
     -------
     plotly.graph_objects.Figure
         A Plotly Treemap figure representing the directory structure.
+
+    Examples
+    --------
+    >>> fig = visualize_dir(".")
+    >>> fig.__class__.__name__
+    'Figure'
     """
 
     data = get_directory_data(path)

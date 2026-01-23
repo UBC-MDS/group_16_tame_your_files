@@ -1,0 +1,42 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - reference/api.qmd
+
+website:
+  title: "tame_your_files"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "API Reference"
+        href: reference/api.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+
+quartodoc:
+  style: numpy
+  package: tame_your_files
+  dir: reference
+  render:
+    - reference/api.qmd
+  sections:
+    - title: "Public API"
+      contents:
+        - tame_your_files.FileInfo
+        - tame_your_files.largest_files
+        - tame_your_files.files_to_free_space
+        - tame_your_files.find_duplicates.find_duplicates
+        - tame_your_files.find_duplicates.find_duplicates_by_name
+        - tame_your_files.find_duplicates.find_duplicates_by_size
+        - tame_your_files.find_duplicates.find_duplicates_by_content
+        - tame_your_files.visualize_dir.get_directory_data
+        - tame_your_files.visualize_dir.create_treemap_figure
+        - tame_your_files.visualize_dir.visualize_dir
+        - tame_your_files.example.add_numbers
+
