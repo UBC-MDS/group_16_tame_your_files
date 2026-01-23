@@ -1,39 +1,45 @@
-# Welcome to tame_your_files
+# tame_your_files
 
-|        |        |
-|--------|--------|
-| Package | [![Latest PyPI Version](https://img.shields.io/pypi/v/tame_your_files.svg)](https://pypi.org/project/tame_your_files/) [![Supported Python Versions](https://img.shields.io/pypi/pyversions/tame_your_files.svg)](https://pypi.org/project/tame_your_files/)  |
-| Meta   | [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md) |
+## Project overview
 
-*TODO: the above badges that indicate python version and package version will only work if your package is on PyPI.
-If you don't plan to publish to PyPI, you can remove them.*
+`tame_your_files` provides pure, non-destructive filesystem analysis utilities.
+It can identify large files, suggest candidates to free space, find duplicates, and
+visualize directory structures.
 
-tame_your_files is an response to the perpetual forces of entropy that disorganize your digital workspace. Comprised of three main modules, this package is designed to tackle a specific aspect of file management, making it easier for users to maintain an organized and efficient digital environment:
+## Development environment setup
 
-* `file_size_utilities` helps users identify the largest files in their directories and determines the amount of space that can be freed up by deleting unnecessary files.
-* `find_duplicates` scans directories to locate duplicate files, allowing users to reclaim storage space by removing redundant copies.
-* `visualize_dir` provides graphical representations of user directories to improve file systems understanding and management.
-
-Developers and data scientists alike will find tame_your_files to be a valuable tool as they accumulate projects and datasets over time. At the time of this writing, there are no other packages that combine these three functionalities into a single, cohesive tool.
-
-## Get started
-
-You can install this package into your preferred Python environment using pip:
+Create and activate the conda environment defined in `environment.yml`:
 
 ```bash
-$ pip install tame_your_files
+conda env create -f environment.yml
+conda activate tame_your_files_env
 ```
 
-TODO: Add a brief example of how to use the package to this section
+## Installation
 
-To use tame_your_files in your code:
+Install the package in editable (development) mode from the repository root:
 
-```python
->>> import tame_your_files
->>> tame_your_files.hello_world()
+```bash
+python -m pip install -e .
 ```
 
-## Copyright
+## Running tests
 
-- Copyright © 2026 Ali Boolor, Jeffrey Ding, Eduardo Rivera.
-- Free software distributed under the [MIT License](./LICENSE).
+Run the full test suite from the repository root:
+
+```bash
+python -m pytest
+```
+
+## Building documentation locally
+
+Build the Quarto site (this runs `quartodoc` automatically via `pre-render`):
+
+```bash
+quarto render docs
+```
+
+## Deploying documentation (automated)
+
+Documentation is built and deployed automatically to GitHub Pages via GitHub Actions.
+Live site: https://github.com/UBC-MDS/group_16_tame_your_files

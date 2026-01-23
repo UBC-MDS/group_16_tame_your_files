@@ -26,5 +26,23 @@ Pure, non-destructive filesystem analysis utilities.
 """
 
 from .file_size_utilities import FileInfo, files_to_free_space, largest_files
+from .find_duplicates import (
+    find_duplicates,
+    find_duplicates_by_content,
+    find_duplicates_by_name,
+    find_duplicates_by_size,
+)
+from .visualize_dir import create_treemap_figure, get_directory_data, visualize_dir
 
-__all__ = ["FileInfo", "largest_files", "files_to_free_space"]
+__all__ = [
+    "FileInfo",
+    "largest_files",
+    "files_to_free_space",
+    "find_duplicates",
+    "find_duplicates_by_name",
+    "find_duplicates_by_size",
+    "find_duplicates_by_content",
+    "get_directory_data",
+    "create_treemap_figure",
+    "visualize_dir",
+]

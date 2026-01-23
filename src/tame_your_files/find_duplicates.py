@@ -35,6 +35,19 @@ def find_duplicates(directory, method='content'):
         If the provided method is not one of 'name', 'size', or 'content'.
     FileNotFoundError
         If the provided directory path does not exist or is not a directory.
+
+    Examples
+    --------
+    >>> import tempfile
+    >>> import os
+    >>> with tempfile.TemporaryDirectory() as tmp:
+    ...     path_1 = os.path.join(tmp, "a.txt")
+    ...     path_2 = os.path.join(tmp, "b.txt")
+    ...     _ = open(path_1, "w").write("same")
+    ...     _ = open(path_2, "w").write("same")
+    ...     duplicates = find_duplicates(tmp, method="content")
+    ...     any(len(paths) > 1 for paths in duplicates.values())
+    True
     """
     if not os.path.isdir(directory):
         raise FileNotFoundError(f"The directory '{directory}' does not exist or is not a directory.")
@@ -62,6 +75,19 @@ def find_duplicates_by_name(directory):
     dict
         A dictionary where keys are file names and values are lists of file paths
         that have that name. Only includes names that appear more than once.
+
+    Examples
+    --------
+    >>> import tempfile
+    >>> import os
+    >>> with tempfile.TemporaryDirectory() as tmp:
+    ...     subdir = os.path.join(tmp, "sub")
+    ...     os.mkdir(subdir)
+    ...     _ = open(os.path.join(tmp, "dup.txt"), "w").write("a")
+    ...     _ = open(os.path.join(subdir, "dup.txt"), "w").write("b")
+    ...     duplicates = find_duplicates_by_name(tmp)
+    ...     list(duplicates.keys())
+    ['dup.txt']
     """
     files_by_name = defaultdict(list)
     for root, _, files in os.walk(directory):
@@ -84,6 +110,17 @@ def find_duplicates_by_size(directory):
     dict
         A dictionary where keys are file sizes (in bytes) and values are lists of file paths
         that have that size. Only includes sizes that appear more than once.
+
+    Examples
+    --------
+    >>> import tempfile
+    >>> import os
+    >>> with tempfile.TemporaryDirectory() as tmp:
+    ...     _ = open(os.path.join(tmp, "a.txt"), "w").write("same")
+    ...     _ = open(os.path.join(tmp, "b.txt"), "w").write("same")
+    ...     duplicates = find_duplicates_by_size(tmp)
+    ...     list(duplicates.keys()) == [4]
+    True
     """
     files_by_size = defaultdict(list)
     for root, _, files in os.walk(directory):
@@ -113,6 +150,17 @@ def find_duplicates_by_content(directory):
     dict
         A dictionary where keys are file hashes and values are lists of file paths
         that have that hash. Only includes hashes that appear more than once.
+
+    Examples
+    --------
+    >>> import tempfile
+    >>> import os
+    >>> with tempfile.TemporaryDirectory() as tmp:
+    ...     _ = open(os.path.join(tmp, "a.txt"), "w").write("same")
+    ...     _ = open(os.path.join(tmp, "b.txt"), "w").write("same")
+    ...     duplicates = find_duplicates_by_content(tmp)
+    ...     any(len(paths) > 1 for paths in duplicates.values())
+    True
     """
     files_by_hash = defaultdict(list)
     for root, _, files in os.walk(directory):

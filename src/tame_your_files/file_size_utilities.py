@@ -1,9 +1,12 @@
 """
 File size utilities for analyzing disk usage.
+
+Author: Ali Boloor
 """
 import heapq
 from dataclasses import dataclass
 from pathlib import Path
+
 
 @dataclass(frozen=True)
 class FileInfo:
@@ -16,6 +19,13 @@ class FileInfo:
         Absolute path to the file.
     size_bytes : int
         File size in bytes.
+
+    Examples
+    --------
+    >>> from pathlib import Path
+    >>> info = FileInfo(path=Path("example.txt"), size_bytes=12)
+    >>> info.size_bytes
+    12
     """
     path: Path
     size_bytes: int
@@ -44,6 +54,17 @@ def largest_files(root: Path, n: int = 10) -> list[FileInfo]:
     - Directories are ignored.
     - Unreadable files, broken symlinks, and permission errors
     are skipped silently.
+
+    Examples
+    --------
+    >>> import tempfile
+    >>> from pathlib import Path
+    >>> with tempfile.TemporaryDirectory() as tmp:
+    ...     root = Path(tmp)
+    ...     _ = (root / "a.txt").write_text("a")
+    ...     _ = (root / "b.txt").write_text("bb")
+    ...     largest_files(root, n=1)[0].path.name
+    'b.txt'
     """
     file_infos = []
     
@@ -94,6 +115,17 @@ def files_to_free_space(root: Path, target_bytes: int) -> list[FileInfo]:
     - If target_bytes <= 0, an empty list is returned.
     - If total file size is insufficient, all files are returned.
     - No files are deleted.
+
+    Examples
+    --------
+    >>> import tempfile
+    >>> from pathlib import Path
+    >>> with tempfile.TemporaryDirectory() as tmp:
+    ...     root = Path(tmp)
+    ...     _ = (root / "a.txt").write_text("a")
+    ...     _ = (root / "b.txt").write_text("bbb")
+    ...     [item.path.name for item in files_to_free_space(root, 2)]
+    ['b.txt']
     """
     if target_bytes <= 0:
         return []
@@ -126,4 +158,3 @@ def files_to_free_space(root: Path, target_bytes: int) -> list[FileInfo]:
             break
     
     return result
-
