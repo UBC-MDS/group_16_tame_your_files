@@ -38,7 +38,9 @@ classifiers = [
 # TODO: add keywords
 keywords = []
 # TODO: add dependencies
-dependencies = []
+dependencies = [
+    "plotly[express]>=5.0.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/Master of Data Science at the University of British Columbia/tame_your_files"
@@ -57,13 +59,8 @@ dev = [
 ]
 
 docs = [
-    "sphinx~=8.0",
-    "myst-parser>=4.0",
-    "pydata-sphinx-theme~=0.16",
-    "sphinx-autobuild>=2024.10.3",
-    "sphinx-autoapi>=3.6.0",
-    "sphinx_design>=0.6.1",
-    "sphinx-copybutton>=0.5.2",
+    "quartodoc",
+    "jupyter",
 ]
 
 build = [
@@ -172,8 +169,8 @@ features = [
 # hatch run docs:build will build your documentation
 # hatch run docs:serve will serve them 'live' on your computer locally
 [tool.hatch.envs.docs.scripts]
-build = ["sphinx-build {args:-W -b html docs docs/_build}"]
-serve = ["sphinx-autobuild docs --watch src/tame_your_files {args:-b html docs/_build/serve}"]
+build = ["quarto render docs"]
+serve = ["quarto preview docs"]
 
 
 

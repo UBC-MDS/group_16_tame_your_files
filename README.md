@@ -1,5 +1,8 @@
 # tame_your_files
 
+[![Build and Test](https://github.com/UBC-MDS/group_16_tame_your_files/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/group_16_tame_your_files/actions/workflows/build.yml)
+[![codecov](https://codecov.io/gh/UBC-MDS/group_16_tame_your_files/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/group_16_tame_your_files)
+
 ## Project overview
 
 `tame_your_files` provides pure, non-destructive filesystem analysis utilities.
