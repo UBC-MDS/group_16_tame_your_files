@@ -6,7 +6,28 @@ on:
   workflow_dispatch:
 
 jobs:
+  style-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout-out Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '>= 3.10'
+
+      - name: Install Ruff
+        run: pip install ruff
+
+      - name: Run Ruff Linting
+        run: ruff check .
+
+      - name: Run Ruff Formatting Check
+        run: ruff format --check .
+
   unit-test-pytest:
+    needs: style-check
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +37,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.13'
+          python-version: '>= 3.10'
 
       - name: Install dependencies
         run: |
@@ -30,6 +51,9 @@ jobs:
   pypi-test:
     needs: unit-test-pytest
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     
     steps:
       - name: Check-out repository
@@ -38,7 +62,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.13'
+          python-version: '>= 3.10'
 
       - name: Install hatch
         run: |
@@ -52,4 +76,3 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
