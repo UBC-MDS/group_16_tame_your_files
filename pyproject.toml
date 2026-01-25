@@ -38,7 +38,9 @@ classifiers = [
 # TODO: add keywords
 keywords = []
 # TODO: add dependencies
-dependencies = []
+dependencies = [
+    "plotly[express]>=5.0.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/Master of Data Science at the University of British Columbia/tame_your_files"
