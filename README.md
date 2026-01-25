@@ -41,5 +41,6 @@ quarto render docs
 
 ## Deploying documentation (automated)
 
+![Build Status](https://github.com/UBC-MDS/group_16_tame_your_files.git/actions/workflows/publish-test-pypi.yml/badge.svg)
 Documentation is built and deployed automatically to GitHub Pages via GitHub Actions.
 Live site: https://github.com/UBC-MDS/group_16_tame_your_files
