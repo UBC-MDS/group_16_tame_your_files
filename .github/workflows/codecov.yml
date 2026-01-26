@@ -28,4 +28,5 @@ jobs:
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: true
-          verbose: true   
+          verbose: true
+          slug: UBC-MDS/group_16_tame_your_files
