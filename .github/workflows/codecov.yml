@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pytest pytest-cov
-          pip install plotly
+          pip install plotly plotly-express
 
       - name: Run tests and generate coverage
         run: pytest --cov=. --cov-report=xml
