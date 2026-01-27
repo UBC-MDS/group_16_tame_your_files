@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: /docs
+  render:
+    - index.qmd
+    - reference/tame_your_files.qmd
+    - reference/*.qmd
+  pre-render:
+    - python -m quartodoc build --config _quarto.yml
+
+website:
+  title: "tame_your_files"
+  navbar:
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Reference
+        href: reference/tame_your_files.qmd
+  sidebar:
+    style: "docked"
+    contents:
+      - text: Home
+        href: index.qmd
+      - section: Reference
+        contents:
+          - reference/tame_your_files.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+
+execute:
+  freeze: auto
+
+quartodoc:
+  style: pkgdown
+  package: tame_your_files
+  dir: reference
+  out_index: tame_your_files.qmd
+  parser: numpy
+  source_dir: /src
+  options:
+    include_private: false
+    include_imports: true
