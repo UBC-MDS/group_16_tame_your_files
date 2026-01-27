@@ -1,0 +1,44 @@
+# files_to_free_space { #tame_your_files.files_to_free_space }
+
+```python
+files_to_free_space(root, target_bytes)
+```
+
+Determine the minimum number of files that would need to be deleted
+to free at least a given amount of disk space.
+
+This function DOES NOT delete anything.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name         | Type   | Description                                | Default    |
+|--------------|--------|--------------------------------------------|------------|
+| root         | Path   | Root directory to scan.                    | _required_ |
+| target_bytes | int    | Desired amount of space to free, in bytes. | _required_ |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type             | Description                                                                                                                           |
+|--------|------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+|        | list\[FileInfo\] | A list of files whose combined size is greater than or equal to target_bytes. Files are selected greedily, starting from the largest. |
+
+## Notes {.doc-section .doc-section-notes}
+
+- Files are selected by descending size.
+- Selection stops as soon as the target is met.
+- If target_bytes <= 0, an empty list is returned.
+- If total file size is insufficient, all files are returned.
+- No files are deleted.
+
+## Examples {.doc-section .doc-section-examples}
+
+```python
+>>> import tempfile
+>>> from pathlib import Path
+>>> with tempfile.TemporaryDirectory() as tmp:
+...     root = Path(tmp)
+...     _ = (root / "a.txt").write_text("a")
+...     _ = (root / "b.txt").write_text("bbb")
+...     [item.path.name for item in files_to_free_space(root, 2)]
+['b.txt']
+```

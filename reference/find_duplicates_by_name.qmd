@@ -1,0 +1,34 @@
+# find_duplicates_by_name { #tame_your_files.find_duplicates_by_name }
+
+```python
+find_duplicates_by_name(directory)
+```
+
+Finds duplicate files based on file names within a given directory and its subdirectories.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name      | Type   | Description                                         | Default    |
+|-----------|--------|-----------------------------------------------------|------------|
+| directory | str    | The path to the directory to search for duplicates. | _required_ |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type   | Description                                                                                                                                    |
+|--------|--------|------------------------------------------------------------------------------------------------------------------------------------------------|
+|        | dict   | A dictionary where keys are file names and values are lists of file paths that have that name. Only includes names that appear more than once. |
+
+## Examples {.doc-section .doc-section-examples}
+
+```python
+>>> import tempfile
+>>> import os
+>>> with tempfile.TemporaryDirectory() as tmp:
+...     subdir = os.path.join(tmp, "sub")
+...     os.mkdir(subdir)
+...     _ = open(os.path.join(tmp, "dup.txt"), "w").write("a")
+...     _ = open(os.path.join(subdir, "dup.txt"), "w").write("b")
+...     duplicates = find_duplicates_by_name(tmp)
+...     list(duplicates.keys())
+['dup.txt']
+```
