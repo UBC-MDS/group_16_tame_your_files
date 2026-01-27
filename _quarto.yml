@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: _site
+  output-dir: /docs
   render:
     - index.qmd
     - reference/tame_your_files.qmd
@@ -33,16 +33,13 @@ format:
 execute:
   freeze: auto
 
-python:
-  path: ../src
-
 quartodoc:
   style: pkgdown
   package: tame_your_files
   dir: reference
   out_index: tame_your_files.qmd
   parser: numpy
-  source_dir: ../src
+  source_dir: /src
   options:
     include_private: false
     include_imports: true

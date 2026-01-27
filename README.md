@@ -46,4 +46,5 @@ quarto render docs
 
 ![Build Status](https://github.com/UBC-MDS/group_16_tame_your_files.git/actions/workflows/publish-test-pypi.yml/badge.svg)
 Documentation is built and deployed automatically to GitHub Pages via GitHub Actions.
-Live site: https://github.com/UBC-MDS/group_16_tame_your_files
+Live site: https://ubc-mds.github.io/group_16_tame_your_files/reference/tame_your_files.html
+*Github pages is currently under repair! Links to all documentation are working, but please avoid clicking "home" or other navigations.*
