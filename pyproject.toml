@@ -57,6 +57,7 @@ Download = "https://pypi.org/project/tame_your_files/#files"
 dev = [
     "hatch",
     "pre-commit",
+    "ruff",
 ]
 
 docs = [
@@ -125,6 +126,7 @@ installer = "uv"
 # This enables dynamic version updates for publishing and deployment
 [tool.hatch.version]
 source = "vcs"
+fallback-version = "0.0.0"
 
 [tool.hatch.build.hooks.vcs]
 version-file = "src/tame_your_files/_version.py" # writes the version to a file so you can import it
@@ -183,6 +185,18 @@ serve = ["quarto preview docs"]
 
 
 #--------------- Check security for your dependencies ---------------#
+
+[tool.hatch.envs.lint]
+detached = true
+dependencies = [
+  "ruff",
+]
+
+[tool.hatch.envs.lint.scripts]
+check = [
+  "ruff check .",
+  "ruff format --check .",
+]
 
 [tool.hatch.envs.audit]
 description = """Check dependencies for security vulnerabilities."""
