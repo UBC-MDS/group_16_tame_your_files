@@ -44,6 +44,9 @@ quarto render docs
 
 ## Deploying documentation (automated)
 
+![Build Status](https://github.com/UBC-MDS/group_16_tame_your_files.git/actions/workflows/publish-test-pypi.yml/badge.svg)
+Live site: https://ubc-mds.github.io/group_16_tame_your_files/reference/tame_your_files.html
+
 Documentation is built by GitHub Actions and published to the `gh-pages` branch.
 To enable GitHub Pages:
 

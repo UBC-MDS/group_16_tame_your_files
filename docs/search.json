@@ -143,46 +143,6 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "tame_your_files",
-    "section": "",
-    "text": "tame_your_files provides non-destructive filesystem analysis utilities for identifying large files, finding duplicates, and visualizing directory structure.\nThe API reference is generated automatically from NumPy-style docstrings in the src/tame_your_files package.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#file-size-utilities",
-    "href": "index.html#file-size-utilities",
-    "title": "tame_your_files",
-    "section": "File size utilities",
-    "text": "File size utilities\n\nFileInfo\nlargest_files\nfiles_to_free_space",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#duplicate-detection",
-    "href": "index.html#duplicate-detection",
-    "title": "tame_your_files",
-    "section": "Duplicate detection",
-    "text": "Duplicate detection\n\nfind_duplicates\nfind_duplicates_by_name\nfind_duplicates_by_size\nfind_duplicates_by_content",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#directory-visualization",
-    "href": "index.html#directory-visualization",
-    "title": "tame_your_files",
-    "section": "Directory visualization",
-    "text": "Directory visualization\n\nget_directory_data\ncreate_treemap_figure\nvisualize_dir",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
     "objectID": "reference/FileInfo.html",
     "href": "reference/FileInfo.html",
     "title": "FileInfo",
