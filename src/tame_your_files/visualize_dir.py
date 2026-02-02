@@ -7,7 +7,6 @@ To facilitate testing, the main function `visualize_directory` calls two functio
 Author: Jeffrey Ding
 """ 
 import os
-import plotly.express as px
 import plotly.graph_objects as go
 
 def get_directory_data(target_path):
