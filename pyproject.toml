@@ -13,7 +13,7 @@ requires = ["hatchling", "hatch-vcs"]
 [project]
 name = "group-16-tame-your-files"
 # You can chose to use dynamic versioning with hatch or static where you add it manually.
-version = "0.0.4dev"
+dynamic = ["version"]
 
 description = """
 This package provides some useful tools for managing your files, looking for duplicates,
