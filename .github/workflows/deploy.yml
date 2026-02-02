@@ -48,7 +48,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          pytest --cov --cov-report=term --cov-branch
+          pytest --cov --cov-report=xml --cov-branch
 
   pypi-test:
     needs: unit-test-pytest
