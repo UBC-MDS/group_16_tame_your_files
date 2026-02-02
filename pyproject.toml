@@ -128,6 +128,9 @@ installer = "uv"
 source = "vcs"
 fallback-version = "0.0.0"
 
+[tool.hatch.version.raw-options]
+git_describe_command = "git describe --dirty --tags --long --match v*"
+
 [tool.hatch.build.hooks.vcs]
 version-file = "src/tame_your_files/_version.py" # writes the version to a file so you can import it
 

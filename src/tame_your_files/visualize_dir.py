@@ -130,7 +130,7 @@ def visualize_dir(path="."):
     return fig
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     # Example usage:
     fig = visualize_dir(".")
     fig.show()
