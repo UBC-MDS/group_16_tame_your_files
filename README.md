@@ -1,5 +1,6 @@
 # tame_your_files
 
+[![TestPyPI](https://img.shields.io/pypi/v/group-16-tame-your-files?label=TestPyPI&pypi_base_url=https%3A%2F%2Ftest.pypi.org%2Fsimple%2F)](https://test.pypi.org/project/group-16-tame-your-files/)
 [![Build and Test](https://github.com/UBC-MDS/group_16_tame_your_files/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/group_16_tame_your_files/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/UBC-MDS/group_16_tame_your_files/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/group_16_tame_your_files)
 
