@@ -1,5 +1,4 @@
 import pytest
-import os
 from tame_your_files.visualize_dir import get_directory_data, create_treemap_figure
 
 # LLM Transparency: Gemini 3 was used to assist in drafting these unit tests. The tests were manually reviewed. 
