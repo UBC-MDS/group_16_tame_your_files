@@ -11,9 +11,9 @@ requires = ["hatchling"]
 ################################################################################
 
 [project]
-name = "tame_your_files"
+name = "tame-your-files"
 # You can chose to use dynamic versioning with hatch or static where you add it manually.
-version = "0.1.0"
+version = "0.0.3"
 
 description = """
 This package provides some useful tools for managing your files, looking for duplicates,
