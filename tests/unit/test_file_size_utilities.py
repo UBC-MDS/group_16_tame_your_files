@@ -1,5 +1,5 @@
 """
-Unit tests for file_size_utilities modules.
+Unit tests for file_size_utilities module.
 
 These tests focus on logic, data structures, and edge cases
 without requiring filesystem access.
