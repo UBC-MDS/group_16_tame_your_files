@@ -4,8 +4,6 @@ Integration tests for file_size_utilities module.
 These tests use the filesystem and test the complete functionality
 of the file_size_utilities functions with real file operations.
 """
-import pytest
-from pathlib import Path
 from tame_your_files.file_size_utilities import FileInfo, largest_files, files_to_free_space
 
 
