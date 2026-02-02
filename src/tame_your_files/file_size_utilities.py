@@ -3,6 +3,7 @@ File size utilities for analyzing disk usage.
 
 Author: Ali Boloor
 """
+
 import heapq
 from dataclasses import dataclass
 from pathlib import Path
@@ -27,6 +28,7 @@ class FileInfo:
     >>> info.size_bytes
     12
     """
+
     path: Path
     size_bytes: int
 
@@ -67,7 +69,7 @@ def largest_files(root: Path, n: int = 10) -> list[FileInfo]:
     'b.txt'
     """
     file_infos = []
-    
+
     try:
         # Recursively scan all files in root and all subdirectories
         for item in root.rglob("*"):
@@ -80,7 +82,7 @@ def largest_files(root: Path, n: int = 10) -> list[FileInfo]:
                     pass
     except (OSError, PermissionError):
         pass
-    
+
     # Use heapq.nlargest for efficient selection, then sort for deterministic ordering
     largest = heapq.nlargest(n, file_infos, key=lambda x: x.size_bytes)
     # Sort by size descending, then by path for deterministic ordering
@@ -129,9 +131,9 @@ def files_to_free_space(root: Path, target_bytes: int) -> list[FileInfo]:
     """
     if target_bytes <= 0:
         return []
-    
+
     file_infos = []
-    
+
     try:
         # Recursively scan all files in root and all subdirectories
         for item in root.rglob("*"):
@@ -144,17 +146,17 @@ def files_to_free_space(root: Path, target_bytes: int) -> list[FileInfo]:
                     pass
     except (OSError, PermissionError):
         pass
-    
+
     # Sort by size descending, then by path for deterministic ordering
     sorted_files = sorted(file_infos, key=lambda x: (-x.size_bytes, str(x.path)))
-    
+
     result = []
     total_size = 0
-    
+
     for file_info in sorted_files:
         result.append(file_info)
         total_size += file_info.size_bytes
         if total_size >= target_bytes:
             break
-    
+
     return result

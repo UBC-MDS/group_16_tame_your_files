@@ -1,16 +1,18 @@
-'''
+"""
 This will be a set of functions to find duplicate files in a given directory and subdirectories. There will be several "modes" of finding duplicates, such as by file name, by file size, and by file content (hashing).
 In order for the functions to be testable, we would like them to return something that can be easily asserted. For example, a dictionary where keys are the duplicate identifiers (like file name, size, or hash) and values are lists of file paths that match that identifier.
 
 LLM Transparency: I initially drafted the logic for these functions and then consulted Gemini AI to refine the docstrings, ensure robust exception handling (like FileNotFoundError and ValueError), and optimize the content hashing for memory efficiency using chunked reading.
 
 Author: Eduardo Rivera
-'''
+"""
+
 import os
 import hashlib
 from collections import defaultdict
 
-def find_duplicates(directory, method='content'):
+
+def find_duplicates(directory, method="content"):
     """
     Finds duplicate files within a given directory and its subdirectories. This is the main function that will call the other functions.
 
@@ -25,7 +27,7 @@ def find_duplicates(directory, method='content'):
     Returns
     -------
     dict
-        A dictionary where keys are the duplicate identifiers (hash, name, or size) 
+        A dictionary where keys are the duplicate identifiers (hash, name, or size)
         and values are lists of file paths that match that identifier.
         Returns an empty dictionary if no duplicates are found.
 
@@ -50,16 +52,21 @@ def find_duplicates(directory, method='content'):
     True
     """
     if not os.path.isdir(directory):
-        raise FileNotFoundError(f"The directory '{directory}' does not exist or is not a directory.")
+        raise FileNotFoundError(
+            f"The directory '{directory}' does not exist or is not a directory."
+        )
 
-    if method == 'name':
+    if method == "name":
         return find_duplicates_by_name(directory)
-    elif method == 'size':
+    elif method == "size":
         return find_duplicates_by_size(directory)
-    elif method == 'content':
+    elif method == "content":
         return find_duplicates_by_content(directory)
     else:
-        raise ValueError(f"Invalid method: {method}. Must be 'name', 'size', or 'content'.")
+        raise ValueError(
+            f"Invalid method: {method}. Must be 'name', 'size', or 'content'."
+        )
+
 
 def find_duplicates_by_name(directory):
     """
@@ -93,8 +100,9 @@ def find_duplicates_by_name(directory):
     for root, _, files in os.walk(directory):
         for file in files:
             files_by_name[file].append(os.path.join(root, file))
-            
+
     return {name: paths for name, paths in files_by_name.items() if len(paths) > 1}
+
 
 def find_duplicates_by_size(directory):
     """
@@ -133,8 +141,9 @@ def find_duplicates_by_size(directory):
             except OSError:
                 # Handle cases where file might be deleted or permissions issue
                 continue
-            
+
     return {size: paths for size, paths in files_by_size.items() if len(paths) > 1}
+
 
 def find_duplicates_by_content(directory):
     """
@@ -175,5 +184,5 @@ def find_duplicates_by_content(directory):
                 files_by_hash[hash_md5.hexdigest()].append(path)
             except OSError:
                 continue
-            
+
     return {h: paths for h, paths in files_by_hash.items() if len(paths) > 1}
