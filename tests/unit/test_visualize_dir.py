@@ -1,5 +1,10 @@
 import pytest
-from tame_your_files.visualize_dir import get_directory_data, create_treemap_figure
+import plotly.graph_objects as go
+from tame_your_files.visualize_dir import (
+    get_directory_data,
+    create_treemap_figure,
+    visualize_dir,
+)
 
 # LLM Transparency: Gemini 3 was used to assist in drafting these unit tests. The tests were manually reviewed.
 
@@ -72,7 +77,6 @@ def test_create_treemap_figure_type(mock_dir):
     """
     Verify that the figure helper returns a Plotly Figure object.
     """
-    import plotly.graph_objects as go
 
     data = get_directory_data(str(mock_dir))
     fig = create_treemap_figure(data)
@@ -85,8 +89,6 @@ def test_visualize_dir_empty_directory(tmp_path):
     """
     Test visualization of an empty directory.
     """
-    import plotly.graph_objects as go
-    from tame_your_files.visualize_dir import visualize_dir
 
     # Create an empty directory
     empty_dir = tmp_path / "empty"
@@ -127,8 +129,6 @@ def test_visualize_dir_main_function(tmp_path):
     """
     Test the main visualize_dir function integration.
     """
-    import plotly.graph_objects as go
-    from tame_your_files.visualize_dir import visualize_dir
 
     root = tmp_path / "root"
     root.mkdir()
@@ -150,18 +150,18 @@ def test_get_directory_data_permission_error(tmp_path):
 
     # Setup mock structure
     root = str(tmp_path)
-    
-    with patch('os.walk') as mock_walk:
-        mock_walk.return_value = [
-            (root, [], ['protected_file.txt'])
-        ]
-        
+
+    with patch("os.walk") as mock_walk:
+        mock_walk.return_value = [(root, [], ["protected_file.txt"])]
+
         # Mock os.path.getsize to raise OSError
-        with patch('os.path.getsize', side_effect=OSError("Permission denied")):
+        with patch("os.path.getsize", side_effect=OSError("Permission denied")):
             data = get_directory_data(root)
-            
+
             # Should still process the file but with size 0
-            file_entry = next(item for item in data if item["name"] == 'protected_file.txt')
+            file_entry = next(
+                item for item in data if item["name"] == "protected_file.txt"
+            )
             assert file_entry["value"] == 0
 
 
@@ -171,12 +171,10 @@ def test_visualize_dir_default_path(tmp_path):
     We change the current working directory to tmp_path to avoid scanning the entire project.
     """
     import os
-    import plotly.graph_objects as go
-    from tame_your_files.visualize_dir import visualize_dir
-    
+
     # Create some content in tmp_path
     (tmp_path / "default.txt").write_text("default content")
-    
+
     # Change CWD safely
     original_cwd = os.getcwd()
     os.chdir(tmp_path)
@@ -184,10 +182,11 @@ def test_visualize_dir_default_path(tmp_path):
         # Call without arguments
         fig = visualize_dir()
         assert isinstance(fig, go.Figure)
-        
-        # Verify it picked up the file in the current directory
-        # (We can't easily check internal data structure here without helper, 
-        # but successful execution implies it worked)
-        assert len(fig.data) > 0
+
+        # Option 1: Convert to tuple first (type-safe)
+        assert len(tuple(fig.data)) > 0
+
+        # Option 2: Check the attribute exists instead
+        # assert hasattr(fig, 'data') and fig.data
     finally:
         os.chdir(original_cwd)
