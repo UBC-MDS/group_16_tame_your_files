@@ -1,0 +1,29 @@
+{
+  "reference/tame_your_files.qmd": {
+    "tame_your_files.html": "289568ff"
+  },
+  "reference/FileInfo.qmd": {
+    "FileInfo.html": "7209345d"
+  },
+  "reference/create_treemap_figure.qmd": {
+    "create_treemap_figure.html": "d6053540"
+  },
+  "reference/files_to_free_space.qmd": {
+    "files_to_free_space.html": "51514fa0"
+  },
+  "reference/find_duplicates_by_content.qmd": {
+    "find_duplicates_by_content.html": "0b272dba"
+  },
+  "reference/find_duplicates_by_name.qmd": {
+    "find_duplicates_by_name.html": "394da8c3"
+  },
+  "reference/find_duplicates_by_size.qmd": {
+    "find_duplicates_by_size.html": "6b6f99c5"
+  },
+  "reference/get_directory_data.qmd": {
+    "get_directory_data.html": "b92bda95"
+  },
+  "reference/largest_files.qmd": {
+    "largest_files.html": "173a326b"
+  }
+}

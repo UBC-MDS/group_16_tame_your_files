@@ -5,10 +5,11 @@ To facilitate testing, the main function `visualize_directory` calls two functio
 
 
 Author: Jeffrey Ding
-""" 
+"""
+
 import os
-import plotly.express as px
 import plotly.graph_objects as go
+
 
 def get_directory_data(target_path):
     """
@@ -18,7 +19,7 @@ def get_directory_data(target_path):
     ----------
     target_path : str
         The root directory path from which to start building the data.
-    
+
     Returns
     -------
     list of dict
@@ -36,45 +37,43 @@ def get_directory_data(target_path):
     data = []
     # Normalize path to ensure consistency
     target_path = os.path.abspath(target_path)
-    
+
     for root, dirs, files in os.walk(target_path):
         # Add current directory
         parent = os.path.dirname(root) if root != target_path else ""
-        
+
         # Folder Entry
-        data.append({
-            "id": root,
-            "name": os.path.basename(root),
-            "parent": parent,
-            "value": 0 # Folders accumulate size from children in Plotly
-        })
-        
+        data.append(
+            {
+                "id": root,
+                "name": os.path.basename(root),
+                "parent": parent,
+                "value": 0,  # Folders accumulate size from children in Plotly
+            }
+        )
+
         # File Entries
         for f in files:
             f_path = os.path.join(root, f)
             try:
                 f_size = os.path.getsize(f_path)
             except OSError:
-                f_size = 0 # Handle system files/permissions
-                
-            data.append({
-                "id": f_path,
-                "name": f,
-                "parent": root,
-                "value": f_size
-            })
-            
+                f_size = 0  # Handle system files/permissions
+
+            data.append({"id": f_path, "name": f, "parent": root, "value": f_size})
+
     return data
+
 
 def create_treemap_figure(data):
     """
     Transforms the flat list into a Plotly Treemap object.
 
     Parameters
-    ----------  
+    ----------
     data : list of dict
         The list of dictionaries representing files and folders with their sizes and hierarchy.
-    
+
     Returns
     -------
     plotly.graph_objects.Figure
@@ -91,17 +90,20 @@ def create_treemap_figure(data):
     parents = [item["parent"] for item in data]
     values = [item["value"] for item in data]
 
-    fig = go.Figure(go.Treemap(
-        ids=ids,
-        labels=labels,
-        parents=parents,
-        values=values,
-        branchvalues="remainder",  # Changed from "total"
-        hoverinfo="label+value+percent parent"
-    ))
-    
+    fig = go.Figure(
+        go.Treemap(
+            ids=ids,
+            labels=labels,
+            parents=parents,
+            values=values,
+            branchvalues="remainder",  # Changed from "total"
+            hoverinfo="label+value+percent parent",
+        )
+    )
+
     fig.update_layout(margin=dict(t=30, l=10, r=10, b=10))
     return fig
+
 
 def visualize_dir(path="."):
     """
@@ -127,7 +129,8 @@ def visualize_dir(path="."):
     fig = create_treemap_figure(data)
     return fig
 
-if __name__ == "__main__":
+
+if __name__ == "__main__":  # pragma: no cover
     # Example usage:
     fig = visualize_dir(".")
     fig.show()
