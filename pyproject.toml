@@ -39,14 +39,13 @@ classifiers = [
 keywords = []
 # TODO: add dependencies
 dependencies = [
-    "plotly[express]>=5.0.0",
-    "plotly>=5.0.0"
+    "plotly>=5.0.0",
 ]
 
 [project.urls]
-Homepage = "https://github.com/Master of Data Science at the University of British Columbia/tame_your_files"
-"Source Code" = "https://github.com/Master of Data Science at the University of British Columbia/tame_your_files"
-"Bug Tracker" = "https://github.com/Master of Data Science at the University of British Columbia/tame_your_files/issues"
+Homepage = "https://github.com/UBC-MDS/group_16_tame_your_files"
+"Source Code" = "https://github.com/UBC-MDS/group_16_tame_your_files"
+"Bug Tracker" = "https://github.com/UBC-MDS/group_16_tame_your_files/issues"
 Documentation = "https://ubc-mds.github.io/group_16_tame_your_files/"
 Download = "https://pypi.org/project/tame_your_files/#files"
 
