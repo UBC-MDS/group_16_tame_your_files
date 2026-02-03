@@ -3,7 +3,7 @@
 [![TestPyPI](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Ftest.pypi.org%2Fpypi%2Fgroup-16-tame-your-files%2Fjson&query=info.version&label=TestPyPI)](https://test.pypi.org/project/group-16-tame-your-files/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 [![Build and Test](https://github.com/UBC-MDS/group_16_tame_your_files/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/group_16_tame_your_files/actions/workflows/build.yml)
-[![codecov](https://codecov.io/gh/UBC-MDS/group_16_tame_your_files/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/group_16_tame_your_files)
+[![codecov](https://codecov.io/gh/UBC-MDS/group_16_tame_your_files/branch/dev/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/group_16_tame_your_files)
 
 ## Project overview
 
