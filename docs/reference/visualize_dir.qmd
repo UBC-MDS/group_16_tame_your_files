@@ -1,0 +1,28 @@
+# visualize_dir { #tame_your_files.visualize_dir }
+
+```python
+visualize_dir(path=".")
+```
+
+Main function to visualize the directory.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name | Type | Description                                                                | Default  |
+|------|------|----------------------------------------------------------------------------|----------|
+| path | str  | The root directory path from which to start visualizing the directory.     | `"."`    |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name | Type                      | Description                                                   |
+|------|---------------------------|---------------------------------------------------------------|
+|      | plotly.graph_objects.Figure | A Plotly Treemap figure representing the directory structure. |
+
+## Examples {.doc-section .doc-section-examples}
+
+```python
+>>> fig = visualize_dir(".")
+>>> fig.__class__.__name__
+'Figure'
+```
+

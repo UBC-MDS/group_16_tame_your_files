@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     branches:
       - main
+      - dev
   schedule:
     - cron: '0 23 * * Sun'
 
@@ -22,6 +24,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v4.5.2
+      with:
+        fetch-depth: 2
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v5.1.0
@@ -48,5 +52,6 @@ jobs:
       if: runner.os == 'macOS' && matrix.python-version == '3.13'
       uses: codecov/codecov-action@5a1091511ad55cbe89839c7260b706298ca349f7  # v5.5.1
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         verbose: true
         files: ./coverage.xml

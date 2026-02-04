@@ -4,9 +4,6 @@ channels:
 dependencies:
   - python=3.11
   - pip
-  - plotly
-  - numpy
-  - pytest
   - quarto
   - pip:
-      - quartodoc
+      - -e .[dev,tests,docs]
