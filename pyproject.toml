@@ -12,8 +12,9 @@ requires = ["hatchling", "hatch-vcs"]
 
 [project]
 name = "group-16-tame-your-files"
+version = "1.0.0"
 # You can chose to use dynamic versioning with hatch or static where you add it manually.
-dynamic = ["version"]
+# dynamic = ["version"]
 
 description = """
 This package provides some useful tools for managing your files, looking for duplicates,
@@ -123,15 +124,15 @@ precision = 2
 installer = "uv"
 
 # This enables dynamic version updates for publishing and deployment
-[tool.hatch.version]
-source = "vcs"
-fallback-version = "0.0.0"
+# [tool.hatch.version]
+# source = "vcs"
+# fallback-version = "0.0.0"
 
-[tool.hatch.version.raw-options]
-git_describe_command = "git describe --dirty --tags --long --match v*"
+# [tool.hatch.version.raw-options]
+# git_describe_command = "git describe --dirty --tags --long"
 
-[tool.hatch.build.hooks.vcs]
-version-file = "src/tame_your_files/_version.py" # writes the version to a file so you can import it
+# [tool.hatch.build.hooks.vcs]
+# version-file = "src/tame_your_files/_version.py" # writes the version to a file so you can import it
 
 ################################################################################
 # Hatch Environments
