@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>create_treemap_figure – tame_your_files</title>
+<title>find_duplicates – tame_your_files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -198,10 +198,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tame_your_files.create_treemap_figure" id="toc-tame_your_files.create_treemap_figure" class="nav-link active" data-scroll-target="#tame_your_files.create_treemap_figure">create_treemap_figure</a>
+  <li><a href="#tame_your_files.find_duplicates" id="toc-tame_your_files.find_duplicates" class="nav-link active" data-scroll-target="#tame_your_files.find_duplicates">find_duplicates</a>
   <ul class="collapse">
   <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
   <li><a href="#returns" id="toc-returns" class="nav-link" data-scroll-target="#returns">Returns</a></li>
+  <li><a href="#raises" id="toc-raises" class="nav-link" data-scroll-target="#raises">Raises</a></li>
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></li>
   </ul>
@@ -213,18 +214,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="tame_your_files.create_treemap_figure" class="level1">
-<h1>create_treemap_figure</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>create_treemap_figure(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Transforms the flat list into a Plotly Treemap object.</p>
+<section id="tame_your_files.find_duplicates" class="level1">
+<h1>find_duplicates</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>find_duplicates(directory, method<span class="op">=</span><span class="st">'content'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Finds duplicate files within a given directory and its subdirectories. This is the main function that will call the other functions.</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 6%">
-<col style="width: 11%">
-<col style="width: 72%">
 <col style="width: 9%">
+<col style="width: 5%">
+<col style="width: 73%">
+<col style="width: 12%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -236,10 +237,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>data</td>
-<td>list of dict</td>
-<td>The list of dictionaries representing files and folders with their sizes and hierarchy.</td>
+<td>directory</td>
+<td>str</td>
+<td>The path to the directory to search for duplicates.</td>
 <td><em>required</em></td>
+</tr>
+<tr class="even">
+<td>method</td>
+<td>str</td>
+<td>The method to use for finding duplicates. Can be ‘name’, ‘size’, or ‘content’.</td>
+<td><code>'content'</code></td>
 </tr>
 </tbody>
 </table>
@@ -248,9 +255,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 28%">
-<col style="width: 63%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 90%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -262,17 +269,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td></td>
-<td>plotly.graph_objects.Figure</td>
-<td>A Plotly Treemap figure representing the directory structure.</td>
+<td>dict</td>
+<td>A dictionary where keys are duplicate identifiers and values are lists of matching file paths. Empty if none.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="raises" class="level2 doc-section doc-section-raises">
+<h2 class="doc-section doc-section-raises anchored" data-anchor-id="raises">Raises</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ValueError</td>
+<td>If the provided method is not one of ‘name’, ‘size’, or ‘content’.</td>
+</tr>
+<tr class="even">
+<td>FileNotFoundError</td>
+<td>If the provided directory path does not exist or is not a directory.</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="examples" class="level2 doc-section doc-section-examples">
 <h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fig <span class="op">=</span> create_treemap_figure([{<span class="st">"id"</span>: <span class="st">"root"</span>, <span class="st">"name"</span>: <span class="st">"root"</span>, <span class="st">"parent"</span>: <span class="st">""</span>, <span class="st">"value"</span>: <span class="dv">0</span>}])</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fig.<span class="va">__class__</span>.<span class="va">__name__</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">'Figure'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> tempfile</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> os</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">with</span> tempfile.TemporaryDirectory() <span class="im">as</span> tmp:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>...     path_1 <span class="op">=</span> os.path.join(tmp, <span class="st">"a.txt"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>...     path_2 <span class="op">=</span> os.path.join(tmp, <span class="st">"b.txt"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>...     _ <span class="op">=</span> <span class="bu">open</span>(path_1, <span class="st">"w"</span>).write(<span class="st">"same"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>...     _ <span class="op">=</span> <span class="bu">open</span>(path_2, <span class="st">"w"</span>).write(<span class="st">"same"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>...     duplicates <span class="op">=</span> find_duplicates(tmp, method<span class="op">=</span><span class="st">"content"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">any</span>(<span class="bu">len</span>(paths) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">for</span> paths <span class="kw">in</span> duplicates.values())</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>

@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Group 16: Tame your Files">
+<meta name="dcterms.date" content="2026-02-03">
 
-<title>create_treemap_figure – tame_your_files</title>
+<title>Work Organization and Retrospective – tame_your_files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -147,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/retrospective.html">Retrospective</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -167,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference/retrospective.html" class="sidebar-item-text sidebar-link">
+  <a href="../reference/retrospective.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Retrospective</span></a>
   </div>
 </li>
@@ -198,84 +165,173 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tame_your_files.create_treemap_figure" id="toc-tame_your_files.create_treemap_figure" class="nav-link active" data-scroll-target="#tame_your_files.create_treemap_figure">create_treemap_figure</a>
+  <li><a href="#issue-assignment-milestones-and-project-boards" id="toc-issue-assignment-milestones-and-project-boards" class="nav-link active" data-scroll-target="#issue-assignment-milestones-and-project-boards">Issue Assignment, Milestones, and Project Boards</a></li>
+  <li><a href="#analytical-project-board-views-data-driven-retrospective" id="toc-analytical-project-board-views-data-driven-retrospective" class="nav-link" data-scroll-target="#analytical-project-board-views-data-driven-retrospective">Analytical Project Board Views &amp; Data-Driven Retrospective</a>
   <ul class="collapse">
-  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
-  <li><a href="#returns" id="toc-returns" class="nav-link" data-scroll-target="#returns">Returns</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#velocity-how-did-our-scope-change-over-time" id="toc-velocity-how-did-our-scope-change-over-time" class="nav-link" data-scroll-target="#velocity-how-did-our-scope-change-over-time">Velocity: How did our scope change over time?</a></li>
+  <li><a href="#burn-up-chart-project-completion-rate" id="toc-burn-up-chart-project-completion-rate" class="nav-link" data-scroll-target="#burn-up-chart-project-completion-rate">Burn-up Chart: Project Completion Rate</a></li>
+  <li><a href="#team-contributions-distribution-of-labor" id="toc-team-contributions-distribution-of-labor" class="nav-link" data-scroll-target="#team-contributions-distribution-of-labor">Team Contributions: Distribution of Labor</a></li>
   </ul></li>
+  <li><a href="#development-tools-infrastructure-and-organizational-practices" id="toc-development-tools-infrastructure-and-organizational-practices" class="nav-link" data-scroll-target="#development-tools-infrastructure-and-organizational-practices">Development Tools, Infrastructure, and Organizational Practices</a></li>
+  <li><a href="#daki-retrospective" id="toc-daki-retrospective" class="nav-link" data-scroll-target="#daki-retrospective">DAKI Retrospective</a></li>
+  <li><a href="#final-reflections" id="toc-final-reflections" class="nav-link" data-scroll-target="#final-reflections">Final Reflections</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Work Organization and Retrospective</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="tame_your_files.create_treemap_figure" class="level1">
-<h1>create_treemap_figure</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>create_treemap_figure(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Transforms the flat list into a Plotly Treemap object.</p>
-<section id="parameters" class="level2 doc-section doc-section-parameters">
-<h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Group 16: Tame your Files </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 3, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="issue-assignment-milestones-and-project-boards" class="level2">
+<h2 class="anchored" data-anchor-id="issue-assignment-milestones-and-project-boards">Issue Assignment, Milestones, and Project Boards</h2>
+<p>The management of this project relied heavily on collaborative brainstorming and GitHub’s tracking features:</p>
+<ul>
+<li><strong>Issues &amp; Communication:</strong> Features were first brainstormed collaboratively by the team. Any bugs discovered during development were immediately communicated via GitHub Issues or Slack, and often addressed in person to ensure quick resolution.</li>
+<li><strong>Project Boards:</strong> We utilized GitHub Project Boards to track the status of these brainstormed features, moving them through the pipeline as team members picked up tasks.</li>
+<li><strong>Milestones:</strong> Work was grouped into milestones to track deliverables. As noted in our velocity analysis, the workload was lighter in early milestones (1 and 2) and ramped up significantly in milestones 3 and 4 as features were deployed and refined.</li>
+</ul>
+<p><strong>Reflection:</strong> The combination of Slack for immediate alerts and GitHub Issues for tracking proved effective. However, as we dispersed to work independently, gaps in communication regarding dependencies became apparent, which we address in the “Improvements” section below.</p>
+<hr>
+</section>
+<section id="analytical-project-board-views-data-driven-retrospective" class="level2">
+<h2 class="anchored" data-anchor-id="analytical-project-board-views-data-driven-retrospective">Analytical Project Board Views &amp; Data-Driven Retrospective</h2>
+<p>We utilized project metrics to analyze our efficiency and contribution equity.</p>
+<section id="velocity-how-did-our-scope-change-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="velocity-how-did-our-scope-change-over-time">Velocity: How did our scope change over time?</h3>
+<p><strong>Analysis:</strong> Work was noticeably lighter in Milestones 1 and 2, serving as a setup phase. Velocity began to ramp up in Milestone 3 and culminated in a significant leap in workload during Milestone 4. This surge was driven by the need to address missing badges, finalize documentation, and drastically improve test coverage based on feedback and errors that arose once features were fully fleshed out. Average time to close all issues was approximately 4-5 days, which was manageable given our team size and workload.</p>
+<hr>
+</section>
+<section id="burn-up-chart-project-completion-rate" class="level3">
+<h3 class="anchored" data-anchor-id="burn-up-chart-project-completion-rate">Burn-up Chart: Project Completion Rate</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/burnout_chart.png" class="img-fluid figure-img"></p>
+<figcaption>Burn-up chart</figcaption>
+</figure>
+</div>
+<p><strong>Analysis:</strong> The burn-up chart reflects the “backend-heavy” nature of our workflow. The early milestones show a steady but slow completion rate. The sharp rise in the final milestone corresponds to the aggregation of peer feedback and the resolution of the “last mile” tasks—specifically the integration of unit tests and repository badges which were critical for the final release.</p>
+<hr>
+</section>
+<section id="team-contributions-distribution-of-labor" class="level3">
+<h3 class="anchored" data-anchor-id="team-contributions-distribution-of-labor">Team Contributions: Distribution of Labor</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/project_contributions.png" class="img-fluid figure-img"></p>
+<figcaption>Team Contributions</figcaption>
+</figure>
+</div>
+<p><strong>Analysis:</strong> - <strong>Ali Boloor:</strong> [18] commits - <strong>Jeffrey Ding:</strong> [29] commits - <strong>Eduardo Rivera:</strong> [21] commits</p>
+<p>While work was dispersed to allow members to code features independently, we aimed for an equitable distribution. The independent nature of the work, however, did lead to some integration challenges (detailed below) which required collective effort to resolve. There were varying commit counts among team member; however, this is due to varying task complexity. All members contributed significantly to the final product. Teammates all collaborated effectively to resolve outstanding github issues. —</p>
+</section>
+</section>
+<section id="development-tools-infrastructure-and-organizational-practices" class="level2">
+<h2 class="anchored" data-anchor-id="development-tools-infrastructure-and-organizational-practices">Development Tools, Infrastructure, and Organizational Practices</h2>
+<ul>
+<li><strong>Tech Stack:</strong> We used <strong>Python</strong> for the core codebase and <strong>Quartodocs</strong> to publish our documentation.</li>
+<li><strong>Communication:</strong> <strong>Slack</strong> and <strong>GitHub Issues</strong> were our primary channels. Real-time debugging often happened in person.</li>
+<li><strong>AI Integration:</strong> <strong>LLMs</strong> were utilized throughout the project to assist in the construction of unit tests, code checking, and formatting, speeding up the development of boilerplate code.</li>
+<li><strong>Dependency Management:</strong> We faced challenges setting up dependencies in <code>pyproject.toml</code> due to extraneous imports in unit tests and source scripts (specifically <code>plotly</code> and <code>visualize_dir.py</code>).</li>
+</ul>
+<p><strong>Scaling Up Recommendations:</strong> For larger-scale versions of this project, we would: - Formalize the “feature mapping” phase to include a required package list before coding begins. - Implement stricter CI checks earlier to catch extraneous imports before the final milestone.</p>
+<hr>
+</section>
+<section id="daki-retrospective" class="level2">
+<h2 class="anchored" data-anchor-id="daki-retrospective">DAKI Retrospective</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 6%">
-<col style="width: 11%">
-<col style="width: 72%">
-<col style="width: 9%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
+<th style="text-align: left;"><strong>Drop</strong></th>
+<th style="text-align: left;"><strong>Add</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>data</td>
-<td>list of dict</td>
-<td>The list of dictionaries representing files and folders with their sizes and hierarchy.</td>
-<td><em>required</em></td>
+<td style="text-align: left;"><em>What was inefficient?</em></td>
+<td style="text-align: left;"><em>What should we start doing?</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- Adding dependencies ad-hoc without notifying the team.</td>
+<td style="text-align: left;">- Early mapping of features to required packages.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- Leaving badge/coverage configuration for the final sprint.</td>
+<td style="text-align: left;">- Communicating new library additions immediately via Issues/Slack.</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="returns" class="level2 doc-section doc-section-returns">
-<h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 28%">
-<col style="width: 63%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
+<th style="text-align: left;"><strong>Keep</strong></th>
+<th style="text-align: left;"><strong>Improve</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td>plotly.graph_objects.Figure</td>
-<td>A Plotly Treemap figure representing the directory structure.</td>
+<td style="text-align: left;"><em>What worked well?</em></td>
+<td style="text-align: left;"><em>What needs refinement?</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- Collaborative brainstorming sessions for feature generation.</td>
+<td style="text-align: left;">- Communication gaps when dispersing to work independently.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- Using LLMs for test generation and formatting.</td>
+<td style="text-align: left;">- Management of <code>pyproject.toml</code> dependencies to avoid conflict with tests.</td>
 </tr>
 </tbody>
 </table>
+<hr>
 </section>
-<section id="examples" class="level2 doc-section doc-section-examples">
-<h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fig <span class="op">=</span> create_treemap_figure([{<span class="st">"id"</span>: <span class="st">"root"</span>, <span class="st">"name"</span>: <span class="st">"root"</span>, <span class="st">"parent"</span>: <span class="st">""</span>, <span class="st">"value"</span>: <span class="dv">0</span>}])</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fig.<span class="va">__class__</span>.<span class="va">__name__</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">'Figure'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="final-reflections" class="level2">
+<h2 class="anchored" data-anchor-id="final-reflections">Final Reflections</h2>
+<ul>
+<li><strong>Successes:</strong> Our two greatest achievements were, first, successfully developing the features that addressed the issues we brainstormed at the start, and second, effectively aggregating and implementing all the feedback acquired from our peers.</li>
+<li><strong>Improvements:</strong> We struggled with <code>pyproject.toml</code> dependencies due to extraneous imports (e.g., <code>plotly</code> in <code>visualize_dir.py</code>). This was a result of communication gaps during independent work. In the future, we would map required packages early and communicate additions immediately.</li>
+<li><strong>Teamwork:</strong> We worked well in person to address bugs, but the independent coding phase requires better synchronization on infrastructure changes.</li>
+</ul>
+<hr>
+<p><em>Prepared by Group 16, Tame your Files, 2026-02-03</em></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

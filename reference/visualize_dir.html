@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>create_treemap_figure – tame_your_files</title>
+<title>visualize_dir – tame_your_files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tame_your_files.create_treemap_figure" id="toc-tame_your_files.create_treemap_figure" class="nav-link active" data-scroll-target="#tame_your_files.create_treemap_figure">create_treemap_figure</a>
+  <li><a href="#tame_your_files.visualize_dir" id="toc-tame_your_files.visualize_dir" class="nav-link active" data-scroll-target="#tame_your_files.visualize_dir">visualize_dir</a>
   <ul class="collapse">
   <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
   <li><a href="#returns" id="toc-returns" class="nav-link" data-scroll-target="#returns">Returns</a></li>
@@ -213,18 +213,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="tame_your_files.create_treemap_figure" class="level1">
-<h1>create_treemap_figure</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>create_treemap_figure(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Transforms the flat list into a Plotly Treemap object.</p>
+<section id="tame_your_files.visualize_dir" class="level1">
+<h1>visualize_dir</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>visualize_dir(path<span class="op">=</span><span class="st">"."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Main function to visualize the directory.</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 6%">
-<col style="width: 11%">
-<col style="width: 72%">
-<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 77%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -236,10 +236,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>data</td>
-<td>list of dict</td>
-<td>The list of dictionaries representing files and folders with their sizes and hierarchy.</td>
-<td><em>required</em></td>
+<td>path</td>
+<td>str</td>
+<td>The root directory path from which to start visualizing the directory.</td>
+<td><code>"."</code></td>
 </tr>
 </tbody>
 </table>
@@ -248,9 +248,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 8%">
+<col style="width: 6%">
 <col style="width: 28%">
-<col style="width: 63%">
+<col style="width: 65%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="examples" class="level2 doc-section doc-section-examples">
 <h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fig <span class="op">=</span> create_treemap_figure([{<span class="st">"id"</span>: <span class="st">"root"</span>, <span class="st">"name"</span>: <span class="st">"root"</span>, <span class="st">"parent"</span>: <span class="st">""</span>, <span class="st">"value"</span>: <span class="dv">0</span>}])</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fig <span class="op">=</span> visualize_dir(<span class="st">"."</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fig.<span class="va">__class__</span>.<span class="va">__name__</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">'Figure'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 

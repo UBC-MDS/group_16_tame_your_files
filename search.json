@@ -1,5 +1,33 @@
 [
   {
+    "objectID": "reference/visualize_dir.html",
+    "href": "reference/visualize_dir.html",
+    "title": "visualize_dir",
+    "section": "",
+    "text": "visualize_dir(path=\".\")\nMain function to visualize the directory.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\npath\nstr\nThe root directory path from which to start visualizing the directory.\n\".\"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nplotly.graph_objects.Figure\nA Plotly Treemap figure representing the directory structure.\n\n\n\n\n\n\n&gt;&gt;&gt; fig = visualize_dir(\".\")\n&gt;&gt;&gt; fig.__class__.__name__\n'Figure'"
+  },
+  {
+    "objectID": "reference/visualize_dir.html#parameters",
+    "href": "reference/visualize_dir.html#parameters",
+    "title": "visualize_dir",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\npath\nstr\nThe root directory path from which to start visualizing the directory.\n\".\""
+  },
+  {
+    "objectID": "reference/visualize_dir.html#returns",
+    "href": "reference/visualize_dir.html#returns",
+    "title": "visualize_dir",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\nplotly.graph_objects.Figure\nA Plotly Treemap figure representing the directory structure."
+  },
+  {
+    "objectID": "reference/visualize_dir.html#examples",
+    "href": "reference/visualize_dir.html#examples",
+    "title": "visualize_dir",
+    "section": "",
+    "text": "&gt;&gt;&gt; fig = visualize_dir(\".\")\n&gt;&gt;&gt; fig.__class__.__name__\n'Figure'"
+  },
+  {
     "objectID": "reference/largest_files.html",
     "href": "reference/largest_files.html",
     "title": "largest_files",
@@ -91,56 +119,60 @@
     "text": "&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     _ = open(os.path.join(tmp, \"a.txt\"), \"w\").write(\"same\")\n...     _ = open(os.path.join(tmp, \"b.txt\"), \"w\").write(\"same\")\n...     duplicates = find_duplicates_by_content(tmp)\n...     any(len(paths) &gt; 1 for paths in duplicates.values())\nTrue"
   },
   {
-    "objectID": "reference/create_treemap_figure.html",
-    "href": "reference/create_treemap_figure.html",
-    "title": "create_treemap_figure",
+    "objectID": "reference/files_to_free_space.html",
+    "href": "reference/files_to_free_space.html",
+    "title": "files_to_free_space",
     "section": "",
-    "text": "create_treemap_figure(data)\nTransforms the flat list into a Plotly Treemap object.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndata\nlist of dict\nThe list of dictionaries representing files and folders with their sizes and hierarchy.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nplotly.graph_objects.Figure\nA Plotly Treemap figure representing the directory structure.\n\n\n\n\n\n\n&gt;&gt;&gt; fig = create_treemap_figure([{\"id\": \"root\", \"name\": \"root\", \"parent\": \"\", \"value\": 0}])\n&gt;&gt;&gt; fig.__class__.__name__\n'Figure'"
+    "text": "files_to_free_space(root, target_bytes)\nDetermine the minimum number of files that would need to be deleted to free at least a given amount of disk space.\nThis function DOES NOT delete anything.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nroot\nPath\nRoot directory to scan.\nrequired\n\n\ntarget_bytes\nint\nDesired amount of space to free, in bytes.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nlist[FileInfo]\nA list of files whose combined size is greater than or equal to target_bytes. Files are selected greedily, starting from the largest.\n\n\n\n\n\n\n\nFiles are selected by descending size.\nSelection stops as soon as the target is met.\nIf target_bytes &lt;= 0, an empty list is returned.\nIf total file size is insufficient, all files are returned.\nNo files are deleted.\n\n\n\n\n&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     root = Path(tmp)\n...     _ = (root / \"a.txt\").write_text(\"a\")\n...     _ = (root / \"b.txt\").write_text(\"bbb\")\n...     [item.path.name for item in files_to_free_space(root, 2)]\n['b.txt']"
   },
   {
-    "objectID": "reference/create_treemap_figure.html#parameters",
-    "href": "reference/create_treemap_figure.html#parameters",
-    "title": "create_treemap_figure",
+    "objectID": "reference/files_to_free_space.html#parameters",
+    "href": "reference/files_to_free_space.html#parameters",
+    "title": "files_to_free_space",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\ndata\nlist of dict\nThe list of dictionaries representing files and folders with their sizes and hierarchy.\nrequired"
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nroot\nPath\nRoot directory to scan.\nrequired\n\n\ntarget_bytes\nint\nDesired amount of space to free, in bytes.\nrequired"
   },
   {
-    "objectID": "reference/create_treemap_figure.html#returns",
-    "href": "reference/create_treemap_figure.html#returns",
-    "title": "create_treemap_figure",
+    "objectID": "reference/files_to_free_space.html#returns",
+    "href": "reference/files_to_free_space.html#returns",
+    "title": "files_to_free_space",
     "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\n\nplotly.graph_objects.Figure\nA Plotly Treemap figure representing the directory structure."
+    "text": "Name\nType\nDescription\n\n\n\n\n\nlist[FileInfo]\nA list of files whose combined size is greater than or equal to target_bytes. Files are selected greedily, starting from the largest."
   },
   {
-    "objectID": "reference/create_treemap_figure.html#examples",
-    "href": "reference/create_treemap_figure.html#examples",
-    "title": "create_treemap_figure",
+    "objectID": "reference/files_to_free_space.html#notes",
+    "href": "reference/files_to_free_space.html#notes",
+    "title": "files_to_free_space",
     "section": "",
-    "text": "&gt;&gt;&gt; fig = create_treemap_figure([{\"id\": \"root\", \"name\": \"root\", \"parent\": \"\", \"value\": 0}])\n&gt;&gt;&gt; fig.__class__.__name__\n'Figure'"
+    "text": "Files are selected by descending size.\nSelection stops as soon as the target is met.\nIf target_bytes &lt;= 0, an empty list is returned.\nIf total file size is insufficient, all files are returned.\nNo files are deleted."
   },
   {
-    "objectID": "reference/tame_your_files.html",
-    "href": "reference/tame_your_files.html",
-    "title": "Function reference",
+    "objectID": "reference/files_to_free_space.html#examples",
+    "href": "reference/files_to_free_space.html#examples",
+    "title": "files_to_free_space",
     "section": "",
-    "text": "Pure, non-destructive filesystem analysis utilities.\n\n\n\nFileInfo\nContainer for file metadata.\n\n\nfiles_to_free_space\nDetermine the minimum number of files that would need to be deleted\n\n\nlargest_files\nRecursively scan a directory and return the n largest files.\n\n\nfind_duplicates_by_content\nFinds duplicate files based on file content (MD5 hash) within a given directory and its subdirectories.\n\n\nfind_duplicates_by_name\nFinds duplicate files based on file names within a given directory and its subdirectories.\n\n\nfind_duplicates_by_size\nFinds duplicate files based on file sizes within a given directory and its subdirectories.\n\n\ncreate_treemap_figure\nTransforms the flat list into a Plotly Treemap object.\n\n\nget_directory_data\nWalks the directory and builds a representative list of dictionaries of all children. Uses os.walk to capture every file and folder.",
-    "crumbs": [
-      "Home",
-      "Reference",
-      "Function reference"
-    ]
+    "text": "&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     root = Path(tmp)\n...     _ = (root / \"a.txt\").write_text(\"a\")\n...     _ = (root / \"b.txt\").write_text(\"bbb\")\n...     [item.path.name for item in files_to_free_space(root, 2)]\n['b.txt']"
   },
   {
-    "objectID": "reference/tame_your_files.html#tame_your_files",
-    "href": "reference/tame_your_files.html#tame_your_files",
-    "title": "Function reference",
+    "objectID": "reference/FileInfo.html",
+    "href": "reference/FileInfo.html",
+    "title": "FileInfo",
     "section": "",
-    "text": "Pure, non-destructive filesystem analysis utilities.\n\n\n\nFileInfo\nContainer for file metadata.\n\n\nfiles_to_free_space\nDetermine the minimum number of files that would need to be deleted\n\n\nlargest_files\nRecursively scan a directory and return the n largest files.\n\n\nfind_duplicates_by_content\nFinds duplicate files based on file content (MD5 hash) within a given directory and its subdirectories.\n\n\nfind_duplicates_by_name\nFinds duplicate files based on file names within a given directory and its subdirectories.\n\n\nfind_duplicates_by_size\nFinds duplicate files based on file sizes within a given directory and its subdirectories.\n\n\ncreate_treemap_figure\nTransforms the flat list into a Plotly Treemap object.\n\n\nget_directory_data\nWalks the directory and builds a representative list of dictionaries of all children. Uses os.walk to capture every file and folder.",
-    "crumbs": [
-      "Home",
-      "Reference",
-      "Function reference"
-    ]
+    "text": "FileInfo(path, size_bytes)\nContainer for file metadata.\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\npath\nPath\nAbsolute path to the file.\n\n\nsize_bytes\nint\nFile size in bytes.\n\n\n\n\n\n\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; info = FileInfo(path=Path(\"example.txt\"), size_bytes=12)\n&gt;&gt;&gt; info.size_bytes\n12"
+  },
+  {
+    "objectID": "reference/FileInfo.html#attributes",
+    "href": "reference/FileInfo.html#attributes",
+    "title": "FileInfo",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\npath\nPath\nAbsolute path to the file.\n\n\nsize_bytes\nint\nFile size in bytes."
+  },
+  {
+    "objectID": "reference/FileInfo.html#examples",
+    "href": "reference/FileInfo.html#examples",
+    "title": "FileInfo",
+    "section": "",
+    "text": "&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; info = FileInfo(path=Path(\"example.txt\"), size_bytes=12)\n&gt;&gt;&gt; info.size_bytes\n12"
   },
   {
     "objectID": "index.html",
@@ -183,60 +215,91 @@
     ]
   },
   {
-    "objectID": "reference/FileInfo.html",
-    "href": "reference/FileInfo.html",
-    "title": "FileInfo",
+    "objectID": "reference/tame_your_files.html",
+    "href": "reference/tame_your_files.html",
+    "title": "Function reference",
     "section": "",
-    "text": "FileInfo(path, size_bytes)\nContainer for file metadata.\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\npath\nPath\nAbsolute path to the file.\n\n\nsize_bytes\nint\nFile size in bytes.\n\n\n\n\n\n\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; info = FileInfo(path=Path(\"example.txt\"), size_bytes=12)\n&gt;&gt;&gt; info.size_bytes\n12"
+    "text": "Pure, non-destructive filesystem analysis utilities.\n\n\n\nFileInfo\nContainer for file metadata.\n\n\nfiles_to_free_space\nDetermine the minimum number of files that would need to be deleted\n\n\nlargest_files\nRecursively scan a directory and return the n largest files.\n\n\nfind_duplicates_by_content\nFinds duplicate files based on file content (MD5 hash) within a given directory and its subdirectories.\n\n\nfind_duplicates_by_name\nFinds duplicate files based on file names within a given directory and its subdirectories.\n\n\nfind_duplicates_by_size\nFinds duplicate files based on file sizes within a given directory and its subdirectories.\n\n\ncreate_treemap_figure\nTransforms the flat list into a Plotly Treemap object.\n\n\nget_directory_data\nWalks the directory and builds a representative list of dictionaries of all children. Uses os.walk to capture every file and folder.",
+    "crumbs": [
+      "Home",
+      "Reference",
+      "Function reference"
+    ]
   },
   {
-    "objectID": "reference/FileInfo.html#attributes",
-    "href": "reference/FileInfo.html#attributes",
-    "title": "FileInfo",
+    "objectID": "reference/tame_your_files.html#tame_your_files",
+    "href": "reference/tame_your_files.html#tame_your_files",
+    "title": "Function reference",
     "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\npath\nPath\nAbsolute path to the file.\n\n\nsize_bytes\nint\nFile size in bytes."
+    "text": "Pure, non-destructive filesystem analysis utilities.\n\n\n\nFileInfo\nContainer for file metadata.\n\n\nfiles_to_free_space\nDetermine the minimum number of files that would need to be deleted\n\n\nlargest_files\nRecursively scan a directory and return the n largest files.\n\n\nfind_duplicates_by_content\nFinds duplicate files based on file content (MD5 hash) within a given directory and its subdirectories.\n\n\nfind_duplicates_by_name\nFinds duplicate files based on file names within a given directory and its subdirectories.\n\n\nfind_duplicates_by_size\nFinds duplicate files based on file sizes within a given directory and its subdirectories.\n\n\ncreate_treemap_figure\nTransforms the flat list into a Plotly Treemap object.\n\n\nget_directory_data\nWalks the directory and builds a representative list of dictionaries of all children. Uses os.walk to capture every file and folder.",
+    "crumbs": [
+      "Home",
+      "Reference",
+      "Function reference"
+    ]
   },
   {
-    "objectID": "reference/FileInfo.html#examples",
-    "href": "reference/FileInfo.html#examples",
-    "title": "FileInfo",
+    "objectID": "reference/create_treemap_figure.html",
+    "href": "reference/create_treemap_figure.html",
+    "title": "create_treemap_figure",
     "section": "",
-    "text": "&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; info = FileInfo(path=Path(\"example.txt\"), size_bytes=12)\n&gt;&gt;&gt; info.size_bytes\n12"
+    "text": "create_treemap_figure(data)\nTransforms the flat list into a Plotly Treemap object.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndata\nlist of dict\nThe list of dictionaries representing files and folders with their sizes and hierarchy.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nplotly.graph_objects.Figure\nA Plotly Treemap figure representing the directory structure.\n\n\n\n\n\n\n&gt;&gt;&gt; fig = create_treemap_figure([{\"id\": \"root\", \"name\": \"root\", \"parent\": \"\", \"value\": 0}])\n&gt;&gt;&gt; fig.__class__.__name__\n'Figure'"
   },
   {
-    "objectID": "reference/files_to_free_space.html",
-    "href": "reference/files_to_free_space.html",
-    "title": "files_to_free_space",
+    "objectID": "reference/create_treemap_figure.html#parameters",
+    "href": "reference/create_treemap_figure.html#parameters",
+    "title": "create_treemap_figure",
     "section": "",
-    "text": "files_to_free_space(root, target_bytes)\nDetermine the minimum number of files that would need to be deleted to free at least a given amount of disk space.\nThis function DOES NOT delete anything.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nroot\nPath\nRoot directory to scan.\nrequired\n\n\ntarget_bytes\nint\nDesired amount of space to free, in bytes.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nlist[FileInfo]\nA list of files whose combined size is greater than or equal to target_bytes. Files are selected greedily, starting from the largest.\n\n\n\n\n\n\n\nFiles are selected by descending size.\nSelection stops as soon as the target is met.\nIf target_bytes &lt;= 0, an empty list is returned.\nIf total file size is insufficient, all files are returned.\nNo files are deleted.\n\n\n\n\n&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     root = Path(tmp)\n...     _ = (root / \"a.txt\").write_text(\"a\")\n...     _ = (root / \"b.txt\").write_text(\"bbb\")\n...     [item.path.name for item in files_to_free_space(root, 2)]\n['b.txt']"
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\ndata\nlist of dict\nThe list of dictionaries representing files and folders with their sizes and hierarchy.\nrequired"
   },
   {
-    "objectID": "reference/files_to_free_space.html#parameters",
-    "href": "reference/files_to_free_space.html#parameters",
-    "title": "files_to_free_space",
+    "objectID": "reference/create_treemap_figure.html#returns",
+    "href": "reference/create_treemap_figure.html#returns",
+    "title": "create_treemap_figure",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nroot\nPath\nRoot directory to scan.\nrequired\n\n\ntarget_bytes\nint\nDesired amount of space to free, in bytes.\nrequired"
+    "text": "Name\nType\nDescription\n\n\n\n\n\nplotly.graph_objects.Figure\nA Plotly Treemap figure representing the directory structure."
   },
   {
-    "objectID": "reference/files_to_free_space.html#returns",
-    "href": "reference/files_to_free_space.html#returns",
-    "title": "files_to_free_space",
+    "objectID": "reference/create_treemap_figure.html#examples",
+    "href": "reference/create_treemap_figure.html#examples",
+    "title": "create_treemap_figure",
     "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\n\nlist[FileInfo]\nA list of files whose combined size is greater than or equal to target_bytes. Files are selected greedily, starting from the largest."
+    "text": "&gt;&gt;&gt; fig = create_treemap_figure([{\"id\": \"root\", \"name\": \"root\", \"parent\": \"\", \"value\": 0}])\n&gt;&gt;&gt; fig.__class__.__name__\n'Figure'"
   },
   {
-    "objectID": "reference/files_to_free_space.html#notes",
-    "href": "reference/files_to_free_space.html#notes",
-    "title": "files_to_free_space",
+    "objectID": "reference/find_duplicates.html",
+    "href": "reference/find_duplicates.html",
+    "title": "find_duplicates",
     "section": "",
-    "text": "Files are selected by descending size.\nSelection stops as soon as the target is met.\nIf target_bytes &lt;= 0, an empty list is returned.\nIf total file size is insufficient, all files are returned.\nNo files are deleted."
+    "text": "find_duplicates(directory, method='content')\nFinds duplicate files within a given directory and its subdirectories. This is the main function that will call the other functions.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndirectory\nstr\nThe path to the directory to search for duplicates.\nrequired\n\n\nmethod\nstr\nThe method to use for finding duplicates. Can be ‘name’, ‘size’, or ‘content’.\n'content'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\ndict\nA dictionary where keys are duplicate identifiers and values are lists of matching file paths. Empty if none.\n\n\n\n\n\n\n\n\n\n\n\n\n\nType\nDescription\n\n\n\n\nValueError\nIf the provided method is not one of ‘name’, ‘size’, or ‘content’.\n\n\nFileNotFoundError\nIf the provided directory path does not exist or is not a directory.\n\n\n\n\n\n\n&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     path_1 = os.path.join(tmp, \"a.txt\")\n...     path_2 = os.path.join(tmp, \"b.txt\")\n...     _ = open(path_1, \"w\").write(\"same\")\n...     _ = open(path_2, \"w\").write(\"same\")\n...     duplicates = find_duplicates(tmp, method=\"content\")\n...     any(len(paths) &gt; 1 for paths in duplicates.values())\nTrue"
   },
   {
-    "objectID": "reference/files_to_free_space.html#examples",
-    "href": "reference/files_to_free_space.html#examples",
-    "title": "files_to_free_space",
+    "objectID": "reference/find_duplicates.html#parameters",
+    "href": "reference/find_duplicates.html#parameters",
+    "title": "find_duplicates",
     "section": "",
-    "text": "&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; from pathlib import Path\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     root = Path(tmp)\n...     _ = (root / \"a.txt\").write_text(\"a\")\n...     _ = (root / \"b.txt\").write_text(\"bbb\")\n...     [item.path.name for item in files_to_free_space(root, 2)]\n['b.txt']"
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\ndirectory\nstr\nThe path to the directory to search for duplicates.\nrequired\n\n\nmethod\nstr\nThe method to use for finding duplicates. Can be ‘name’, ‘size’, or ‘content’.\n'content'"
+  },
+  {
+    "objectID": "reference/find_duplicates.html#returns",
+    "href": "reference/find_duplicates.html#returns",
+    "title": "find_duplicates",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\ndict\nA dictionary where keys are duplicate identifiers and values are lists of matching file paths. Empty if none."
+  },
+  {
+    "objectID": "reference/find_duplicates.html#raises",
+    "href": "reference/find_duplicates.html#raises",
+    "title": "find_duplicates",
+    "section": "",
+    "text": "Type\nDescription\n\n\n\n\nValueError\nIf the provided method is not one of ‘name’, ‘size’, or ‘content’.\n\n\nFileNotFoundError\nIf the provided directory path does not exist or is not a directory."
+  },
+  {
+    "objectID": "reference/find_duplicates.html#examples",
+    "href": "reference/find_duplicates.html#examples",
+    "title": "find_duplicates",
+    "section": "",
+    "text": "&gt;&gt;&gt; import tempfile\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; with tempfile.TemporaryDirectory() as tmp:\n...     path_1 = os.path.join(tmp, \"a.txt\")\n...     path_2 = os.path.join(tmp, \"b.txt\")\n...     _ = open(path_1, \"w\").write(\"same\")\n...     _ = open(path_2, \"w\").write(\"same\")\n...     duplicates = find_duplicates(tmp, method=\"content\")\n...     any(len(paths) &gt; 1 for paths in duplicates.values())\nTrue"
   },
   {
     "objectID": "reference/find_duplicates_by_name.html",
@@ -293,5 +356,71 @@
     "title": "get_directory_data",
     "section": "",
     "text": "&gt;&gt;&gt; data = get_directory_data(\".\")\n&gt;&gt;&gt; isinstance(data, list)\nTrue"
+  },
+  {
+    "objectID": "reference/retrospective.html",
+    "href": "reference/retrospective.html",
+    "title": "Work Organization and Retrospective",
+    "section": "",
+    "text": "The management of this project relied heavily on collaborative brainstorming and GitHub’s tracking features:\n\nIssues & Communication: Features were first brainstormed collaboratively by the team. Any bugs discovered during development were immediately communicated via GitHub Issues or Slack, and often addressed in person to ensure quick resolution.\nProject Boards: We utilized GitHub Project Boards to track the status of these brainstormed features, moving them through the pipeline as team members picked up tasks.\nMilestones: Work was grouped into milestones to track deliverables. As noted in our velocity analysis, the workload was lighter in early milestones (1 and 2) and ramped up significantly in milestones 3 and 4 as features were deployed and refined.\n\nReflection: The combination of Slack for immediate alerts and GitHub Issues for tracking proved effective. However, as we dispersed to work independently, gaps in communication regarding dependencies became apparent, which we address in the “Improvements” section below.",
+    "crumbs": [
+      "Home",
+      "Retrospective"
+    ]
+  },
+  {
+    "objectID": "reference/retrospective.html#issue-assignment-milestones-and-project-boards",
+    "href": "reference/retrospective.html#issue-assignment-milestones-and-project-boards",
+    "title": "Work Organization and Retrospective",
+    "section": "",
+    "text": "The management of this project relied heavily on collaborative brainstorming and GitHub’s tracking features:\n\nIssues & Communication: Features were first brainstormed collaboratively by the team. Any bugs discovered during development were immediately communicated via GitHub Issues or Slack, and often addressed in person to ensure quick resolution.\nProject Boards: We utilized GitHub Project Boards to track the status of these brainstormed features, moving them through the pipeline as team members picked up tasks.\nMilestones: Work was grouped into milestones to track deliverables. As noted in our velocity analysis, the workload was lighter in early milestones (1 and 2) and ramped up significantly in milestones 3 and 4 as features were deployed and refined.\n\nReflection: The combination of Slack for immediate alerts and GitHub Issues for tracking proved effective. However, as we dispersed to work independently, gaps in communication regarding dependencies became apparent, which we address in the “Improvements” section below.",
+    "crumbs": [
+      "Home",
+      "Retrospective"
+    ]
+  },
+  {
+    "objectID": "reference/retrospective.html#analytical-project-board-views-data-driven-retrospective",
+    "href": "reference/retrospective.html#analytical-project-board-views-data-driven-retrospective",
+    "title": "Work Organization and Retrospective",
+    "section": "Analytical Project Board Views & Data-Driven Retrospective",
+    "text": "Analytical Project Board Views & Data-Driven Retrospective\nWe utilized project metrics to analyze our efficiency and contribution equity.\n\nVelocity: How did our scope change over time?\nAnalysis: Work was noticeably lighter in Milestones 1 and 2, serving as a setup phase. Velocity began to ramp up in Milestone 3 and culminated in a significant leap in workload during Milestone 4. This surge was driven by the need to address missing badges, finalize documentation, and drastically improve test coverage based on feedback and errors that arose once features were fully fleshed out. Average time to close all issues was approximately 4-5 days, which was manageable given our team size and workload.\n\n\n\nBurn-up Chart: Project Completion Rate\n\n\n\nBurn-up chart\n\n\nAnalysis: The burn-up chart reflects the “backend-heavy” nature of our workflow. The early milestones show a steady but slow completion rate. The sharp rise in the final milestone corresponds to the aggregation of peer feedback and the resolution of the “last mile” tasks—specifically the integration of unit tests and repository badges which were critical for the final release.\n\n\n\nTeam Contributions: Distribution of Labor\n\n\n\nTeam Contributions\n\n\nAnalysis: - Ali Boloor: [18] commits - Jeffrey Ding: [29] commits - Eduardo Rivera: [21] commits\nWhile work was dispersed to allow members to code features independently, we aimed for an equitable distribution. The independent nature of the work, however, did lead to some integration challenges (detailed below) which required collective effort to resolve. There were varying commit counts among team member; however, this is due to varying task complexity. All members contributed significantly to the final product. Teammates all collaborated effectively to resolve outstanding github issues. —",
+    "crumbs": [
+      "Home",
+      "Retrospective"
+    ]
+  },
+  {
+    "objectID": "reference/retrospective.html#development-tools-infrastructure-and-organizational-practices",
+    "href": "reference/retrospective.html#development-tools-infrastructure-and-organizational-practices",
+    "title": "Work Organization and Retrospective",
+    "section": "Development Tools, Infrastructure, and Organizational Practices",
+    "text": "Development Tools, Infrastructure, and Organizational Practices\n\nTech Stack: We used Python for the core codebase and Quartodocs to publish our documentation.\nCommunication: Slack and GitHub Issues were our primary channels. Real-time debugging often happened in person.\nAI Integration: LLMs were utilized throughout the project to assist in the construction of unit tests, code checking, and formatting, speeding up the development of boilerplate code.\nDependency Management: We faced challenges setting up dependencies in pyproject.toml due to extraneous imports in unit tests and source scripts (specifically plotly and visualize_dir.py).\n\nScaling Up Recommendations: For larger-scale versions of this project, we would: - Formalize the “feature mapping” phase to include a required package list before coding begins. - Implement stricter CI checks earlier to catch extraneous imports before the final milestone.",
+    "crumbs": [
+      "Home",
+      "Retrospective"
+    ]
+  },
+  {
+    "objectID": "reference/retrospective.html#daki-retrospective",
+    "href": "reference/retrospective.html#daki-retrospective",
+    "title": "Work Organization and Retrospective",
+    "section": "DAKI Retrospective",
+    "text": "DAKI Retrospective\n\n\n\n\n\n\n\nDrop\nAdd\n\n\n\n\nWhat was inefficient?\nWhat should we start doing?\n\n\n- Adding dependencies ad-hoc without notifying the team.\n- Early mapping of features to required packages.\n\n\n- Leaving badge/coverage configuration for the final sprint.\n- Communicating new library additions immediately via Issues/Slack.\n\n\n\n\n\n\n\n\n\n\nKeep\nImprove\n\n\n\n\nWhat worked well?\nWhat needs refinement?\n\n\n- Collaborative brainstorming sessions for feature generation.\n- Communication gaps when dispersing to work independently.\n\n\n- Using LLMs for test generation and formatting.\n- Management of pyproject.toml dependencies to avoid conflict with tests.",
+    "crumbs": [
+      "Home",
+      "Retrospective"
+    ]
+  },
+  {
+    "objectID": "reference/retrospective.html#final-reflections",
+    "href": "reference/retrospective.html#final-reflections",
+    "title": "Work Organization and Retrospective",
+    "section": "Final Reflections",
+    "text": "Final Reflections\n\nSuccesses: Our two greatest achievements were, first, successfully developing the features that addressed the issues we brainstormed at the start, and second, effectively aggregating and implementing all the feedback acquired from our peers.\nImprovements: We struggled with pyproject.toml dependencies due to extraneous imports (e.g., plotly in visualize_dir.py). This was a result of communication gaps during independent work. In the future, we would map required packages early and communicate additions immediately.\nTeamwork: We worked well in person to address bugs, but the independent coding phase requires better synchronization on infrastructure changes.\n\n\nPrepared by Group 16, Tame your Files, 2026-02-03",
+    "crumbs": [
+      "Home",
+      "Retrospective"
+    ]
   }
 ]
